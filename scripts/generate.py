@@ -77,19 +77,36 @@ def main(export_dir):
     if not real_files:
         sys.exit(f"В {export_dir} нет файлов real*.csv")
 
-    # --- реализация: определяем период по максимальной дате транзакции ---
-    txns = []  # (dept, dt, summa, is_pt)
+    # --- реализация ---
+    # Выгрузка A&A иногда кладёт один и тот же блок транзакций в несколько
+    # файлов (например, копия ТЗ внутри real_mer) — поэтому одинаковые строки
+    # из РАЗНЫХ файлов учитываются один раз (берём максимум повторов по файлу,
+    # чтобы не потерять честные повторные покупки внутри одного файла).
+    from collections import Counter
+    global_cnt = Counter()
     for p in real_files:
+        file_cnt = Counter()
         for idx, r in read_rows(p):
-            try:
-                dt = datetime.strptime(r[idx["DateValue"]].strip(), "%d.%m.%Y %H:%M:%S")
-            except ValueError:
-                continue
-            dep = canon_section(r[idx["SectionName"]])
-            if dep is None:
-                continue
-            is_pt = "персональн" in r[idx["Name"]].lower()
-            txns.append((dep, dt, num(r[idx["Summa"]]), is_pt))
+            key = (r[idx["SectionName"]], r[idx["ResourceName"]], r[idx["FIO"]],
+                   r[idx["Price"]], r[idx["Qty"]], r[idx["Summa"]],
+                   r[idx["Name"]], r[idx["DateValue"]])
+            file_cnt[key] += 1
+        for key, n in file_cnt.items():
+            global_cnt[key] = max(global_cnt[key], n)
+
+    txns = []  # (dept, dt, summa, is_pt)
+    for key, n in global_cnt.items():
+        section, _res, _fio, _price, _qty, summa, name, datevalue = key
+        try:
+            dt = datetime.strptime(datevalue.strip(), "%d.%m.%Y %H:%M:%S")
+        except ValueError:
+            continue
+        dep = canon_section(section)
+        if dep is None:
+            continue
+        is_pt = "персональн" in name.lower()
+        for _ in range(n):
+            txns.append((dep, dt, num(summa), is_pt))
 
     end = max(t[1] for t in txns)
     start = end.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
