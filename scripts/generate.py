@@ -130,8 +130,8 @@ def main(export_dir):
 
     # --- СТ по департаментам и тренерам ---
     st = defaultdict(int)
-    st_conv = defaultdict(int)
-    trainers = defaultdict(lambda: defaultdict(int))
+    st_sales = defaultdict(int)          # продажи после СТ (Qnt)
+    trainers = defaultdict(lambda: defaultdict(lambda: [0, 0]))  # dep -> name -> [СТ, продажи]
     for p in st_files:
         dep = dept_from_filename(p)
         if dep is None:
@@ -141,9 +141,12 @@ def main(export_dir):
                 q = int(num(r[idx["ExQnt"]]))
             except (KeyError, ValueError):
                 continue
+            sales = int(num(r[idx["Qnt"]]))
             st[dep] += q
-            st_conv[dep] += int(num(r[idx["Qnt"]]))
-            trainers[dep][title_name(r[idx["ResourceName"]])] += q
+            st_sales[dep] += sales
+            t = trainers[dep][title_name(r[idx["ResourceName"]])]
+            t[0] += q
+            t[1] += sales
 
     # --- планы ---
     with open(os.path.join(ROOT, "data", "plans.json"), encoding="utf-8") as f:
@@ -168,6 +171,7 @@ def main(export_dir):
             "st": st.get(dep) if dep in st else None,
             "st_plan": plan_st.get(dep),
             "st_pct": pct(st.get(dep, 0), plan_st.get(dep)) if dep in st else None,
+            "st_sales": st_sales.get(dep) if dep in st else None,
         })
 
     total_real = sum(real.values())
@@ -183,11 +187,12 @@ def main(export_dir):
         "st": sum(st.values()),
         "st_plan": sum(plan_st.values()),
         "st_pct": pct(sum(st.values()), sum(plan_st.values())),
+        "st_sales": sum(st_sales.values()),
     }
 
     trainer_panels = {
-        dep: sorted(({"name": n, "st": q} for n, q in trs.items()),
-                    key=lambda x: (-x["st"], x["name"]))
+        dep: sorted(({"name": n, "st": v[0], "sales": v[1]} for n, v in trs.items()),
+                    key=lambda x: (-x["st"], -x["sales"], x["name"]))
         for dep, trs in trainers.items()
     }
 
