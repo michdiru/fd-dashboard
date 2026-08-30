@@ -98,6 +98,14 @@
   .stage{width:1600px;height:900px;padding:26px 34px 20px;transform-origin:top left;display:flex;flex-direction:column;}
 
   .masthead{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;flex:0 0 auto;}
+  :root{--logo-maroon:#7C1417;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--logo-maroon:#9c2a22;} }
+  :root[data-theme="dark"]{--logo-maroon:#9c2a22;}
+  .logo{display:flex;align-items:center;gap:9px;align-self:center;flex:0 0 auto;margin-right:2px;}
+  .logo svg{display:block;}
+  .logo-word{line-height:1;}
+  .logo-word .l1{font-size:13.5px;font-weight:900;letter-spacing:.02em;color:#F49B1E;}
+  .logo-word .l2{font-size:15.5px;font-weight:900;letter-spacing:.06em;color:#D8232A;margin-top:2px;}
   .title{font-size:27px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;}
   .title .grad{background:linear-gradient(90deg,var(--blue),var(--purple) 55%,var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent;}
   .m-sub{font-size:13px;color:var(--text-2);}
@@ -203,6 +211,16 @@
 
   <div class="stage-wrap"><div class="stage" id="stage">
     <div class="masthead">
+      <div class="logo" aria-label="Королеф Фитнес">
+        <svg width="42" height="46" viewBox="150 60 760 880" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="497" cy="170" r="55" fill="#F49B1E"/>
+          <path d="M552 100 C600 180 615 300 610 420 C606 540 585 610 560 655 C548 668 532 660 538 645 C566 585 580 520 582 420 C584 300 570 190 528 112 Z" fill="#F49B1E"/>
+          <path d="M325 600 C380 500 450 380 535 275 C555 262 575 275 565 292 C480 390 415 500 352 612 C342 622 330 614 325 600 Z" fill="#F49B1E"/>
+          <path d="M198 350 C430 322 650 372 850 460 C855 468 852 480 844 486 C640 412 415 372 204 398 C194 390 192 362 198 350 Z" fill="var(--logo-maroon)"/>
+          <path d="M545 200 C470 260 400 360 378 480 C360 580 372 730 396 872 C390 890 372 888 370 872 C348 720 342 570 362 462 C386 344 458 240 532 186 Z" fill="#D8232A"/>
+        </svg>
+        <div class="logo-word"><div class="l1">КОРОЛЕФ</div><div class="l2">ФИТНЕС</div></div>
+      </div>
       <div class="title">Показатели <span class="grad">фитнес-департамента</span></div>
       <div class="m-sub" id="periodLine"></div>
       <div class="m-upd" id="updLine"></div>
