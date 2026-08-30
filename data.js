@@ -1,5 +1,5 @@
 window.DASH_DATA = {
- "generated_at": "30.08.2026 11:06",
+ "generated_at": "30.08.2026 16:07",
  "period": {
   "from": "01.08.2026",
   "to": "28.08.2026"
