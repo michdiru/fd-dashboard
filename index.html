@@ -102,6 +102,13 @@
   .title .grad{background:linear-gradient(90deg,var(--blue),var(--purple) 55%,var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent;}
   .m-sub{font-size:13px;color:var(--text-2);}
   .m-upd{margin-left:auto;font-size:11.5px;color:var(--text-3);}
+  .theme-btn{
+    flex:0 0 auto;align-self:center;display:inline-flex;align-items:center;gap:6px;
+    padding:6px 12px;border-radius:99px;border:1px solid var(--divider);
+    background:var(--card);color:var(--text-2);font:inherit;font-size:12px;font-weight:600;
+    cursor:pointer;line-height:1;
+  }
+  .theme-btn:hover{color:var(--text);border-color:var(--text-3);}
 
   .cols{display:flex;gap:22px;flex:1 1 auto;min-height:0;}
   .col-l{flex:0 0 852px;display:flex;flex-direction:column;gap:16px;min-height:0;}
@@ -199,6 +206,7 @@
       <div class="title">Показатели <span class="grad">фитнес-департамента</span></div>
       <div class="m-sub" id="periodLine"></div>
       <div class="m-upd" id="updLine"></div>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Переключить тему"></button>
     </div>
 
     <div class="cols">
@@ -220,9 +228,40 @@
     </div>
   </div></div>
 
+  <script>
+  /* переключатель темы: до отрисовки, чтобы не мигало */
+  (function(){
+    var KEY = 'fd-theme';
+    function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+    function effective(){
+      var s = saved();
+      if(s === 'light' || s === 'dark') return s;
+      return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    function apply(){
+      var s = saved();
+      if(s === 'light' || s === 'dark') document.documentElement.setAttribute('data-theme', s);
+      else document.documentElement.removeAttribute('data-theme');
+      var btn = document.getElementById('themeBtn');
+      if(btn) btn.textContent = effective() === 'dark' ? '☀︎ Светлая' : '☾ Тёмная';
+    }
+    window.__fdTheme = {
+      init: function(){
+        apply();
+        document.getElementById('themeBtn').addEventListener('click', function(){
+          try{ localStorage.setItem(KEY, effective() === 'dark' ? 'light' : 'dark'); }catch(e){}
+          apply();
+        });
+      },
+      apply: apply
+    };
+    apply();
+  })();
+  </script>
   <script src="data.js"></script>
   <script>
   (function(){
+    window.__fdTheme.init();
     var D = window.DASH_DATA;
     if(!D){ document.getElementById('periodLine').textContent = 'Нет данных: не найден data.js'; return; }
 
