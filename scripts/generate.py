@@ -190,9 +190,14 @@ def main(export_dir):
         "st_sales": sum(st_sales.values()),
     }
 
+    def conv_pct(st_cnt, sales_cnt):
+        return round(sales_cnt / st_cnt * 100) if st_cnt else None
+
     trainer_panels = {
-        dep: sorted(({"name": n, "st": v[0], "sales": v[1]} for n, v in trs.items()),
-                    key=lambda x: (-x["st"], -x["sales"], x["name"]))
+        dep: sorted(
+            ({"name": n, "st": v[0], "sales_pct": conv_pct(v[0], v[1])} for n, v in trs.items()),
+            key=lambda x: (-x["st"], -(x["sales_pct"] or 0), x["name"]),
+        )
         for dep, trs in trainers.items()
     }
 
