@@ -157,6 +157,9 @@ def main(export_dir):
     def pct(fact, plan):
         return round(fact / plan * 100) if plan else None
 
+    def conv_pct(st_cnt, sales_cnt):
+        return round(sales_cnt / st_cnt * 100) if st_cnt else None
+
     departments = []
     for dep in DEPTS:
         departments.append({
@@ -172,6 +175,7 @@ def main(export_dir):
             "st_plan": plan_st.get(dep),
             "st_pct": pct(st.get(dep, 0), plan_st.get(dep)) if dep in st else None,
             "st_sales": st_sales.get(dep) if dep in st else None,
+            "st_sales_pct": conv_pct(st.get(dep, 0), st_sales.get(dep, 0)) if dep in st else None,
         })
 
     total_real = sum(real.values())
@@ -188,14 +192,13 @@ def main(export_dir):
         "st_plan": sum(plan_st.values()),
         "st_pct": pct(sum(st.values()), sum(plan_st.values())),
         "st_sales": sum(st_sales.values()),
+        "st_sales_pct": conv_pct(sum(st.values()), sum(st_sales.values())),
     }
-
-    def conv_pct(st_cnt, sales_cnt):
-        return round(sales_cnt / st_cnt * 100) if st_cnt else None
 
     trainer_panels = {
         dep: sorted(
-            ({"name": n, "st": v[0], "sales_pct": conv_pct(v[0], v[1])} for n, v in trs.items()),
+            ({"name": n, "st": v[0], "sales": v[1],
+              "sales_pct": conv_pct(v[0], v[1])} for n, v in trs.items()),
             key=lambda x: (-x["st"], -(x["sales_pct"] or 0), x["name"]),
         )
         for dep, trs in trainers.items()
