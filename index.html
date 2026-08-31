@@ -175,10 +175,10 @@
   .lb-panel-title .sw{width:8px;height:8px;border-radius:50%;flex:0 0 auto;align-self:center;}
   .lb-panel-title .cnt{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--text-2);}
   .rank-list{display:flex;flex-direction:column;gap:3.5px;}
-  .rank-row{display:grid;grid-template-columns:15px 126px 1fr 24px 30px;align-items:center;gap:7px;}
+  .rank-row{display:grid;grid-template-columns:15px 126px 1fr 24px 42px;align-items:center;gap:7px;}
   .rank-sales{font-size:10px;font-weight:700;text-align:right;color:var(--pill-good-fg);}
   .rank-sales.zero{color:var(--text-3);font-weight:600;}
-  .rank-hdr{display:grid;grid-template-columns:15px 126px 1fr 24px 30px;gap:7px;font-size:8.5px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;}
+  .rank-hdr{display:grid;grid-template-columns:15px 126px 1fr 24px 42px;gap:7px;font-size:8.5px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;}
   .rank-hdr span{text-align:right;}
   .lb-grid .lb-col{gap:11px;}
   .rank-list{gap:3.2px;}
@@ -203,7 +203,7 @@
     .tbl-card{overflow-x:auto;}
     table{min-width:640px;}
     .lb-grid{flex-direction:column;}
-    .rank-row,.rank-hdr{grid-template-columns:15px 108px 1fr 24px 30px;}
+    .rank-row,.rank-hdr{grid-template-columns:15px 108px 1fr 24px 42px;}
   }
 </style>
 </head>
@@ -233,7 +233,7 @@
       <div class="col-r">
         <div class="lb-head">
           <div class="lb-title">Рейтинг тренеров по СТ</div>
-          <div class="lb-sub">по департаментам · проведённые СТ и продажи после них</div>
+          <div class="lb-sub">по департаментам · проведённые СТ и конверсия в продажу</div>
         </div>
         <div class="lb-grid" id="lbGrid"></div>
       </div>
@@ -365,20 +365,29 @@
       for(var i=0;i<D.departments.length;i++) if(D.departments[i].name===dep) d=D.departments[i];
       var rowsH = list.map(function(tr,i){
         var w = Math.max(6, Math.round(tr.st/max*100));
-        var s = tr.sales||0;
+        var sales = tr.sales||0;
+        var salesPct = tr.sales_pct;
+        if(salesPct==null && tr.st) salesPct = Math.round(sales/tr.st*100);
+        var salesLabel = salesPct==null ? '—' : salesPct+'%';
+        var salesTitle = tr.st ? 'Купили: '+sales+' из '+tr.st+' ('+salesLabel+')' : '';
         return '<div class="rank-row'+(i<3?' medal':'')+'">'+
           '<div class="rank-num num">'+(i+1)+'</div>'+
           '<div class="rank-name" title="'+esc(tr.name)+'">'+esc(tr.name)+'</div>'+
           '<div class="rank-track"><div class="rank-fill" style="width:'+w+'%;background:'+col+';"></div></div>'+
           '<div class="rank-val num">'+tr.st+'</div>'+
-          '<div class="rank-sales num'+(s?'':' zero')+'">'+s+'</div>'+
+          '<div class="rank-sales num'+(salesPct>0?'':' zero')+'" title="'+esc(salesTitle)+'">'+salesLabel+'</div>'+
         '</div>';
       }).join('');
-      var salesInfo = (d&&d.st_sales!=null) ? ' · <span style="color:var(--pill-good-fg)">'+d.st_sales+' продаж</span>' : '';
+      var deptSalesPct = null;
+      if(d){
+        if(d.st_sales_pct!=null) deptSalesPct = d.st_sales_pct;
+        else if(d.st) deptSalesPct = Math.round((d.st_sales||0)/d.st*100);
+      }
+      var salesInfo = deptSalesPct!=null ? ' · <span style="color:var(--pill-good-fg)">'+deptSalesPct+'% продаж</span>' : '';
       return '<div class="card lb-panel">'+
         '<div class="lb-panel-title"><span class="sw" style="background:'+col+'"></span>'+esc(dep)+
           '<span class="cnt num">'+(d&&d.st!=null?d.st+' СТ':'')+salesInfo+(d&&d.st_pct!=null?' · '+d.st_pct+'% плана':'')+'</span></div>'+
-        '<div class="rank-hdr"><span></span><span style="text-align:left">Тренер</span><span></span><span>СТ</span><span>прод.</span></div>'+
+        '<div class="rank-hdr"><span></span><span style="text-align:left">Тренер</span><span></span><span>СТ</span><span>прод., %</span></div>'+
         '<div class="rank-list">'+rowsH+'</div>'+
       '</div>';
     }
