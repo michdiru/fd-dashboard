@@ -1,5 +1,5 @@
 window.DASH_DATA = {
- "generated_at": "31.08.2026 11:57",
+ "generated_at": "31.08.2026 12:01",
  "period": {
   "from": "01.08.2026",
   "to": "31.08.2026"
@@ -9,12 +9,12 @@ window.DASH_DATA = {
   "to": "31.08.2025"
  },
  "totals": {
-  "pt": 1621,
-  "real": 3593934.75,
+  "pt": 1752,
+  "real": 3653384.75,
   "real_plan": 4210000,
-  "real_pct": 85,
+  "real_pct": 87,
   "prev": 3755925.55,
-  "delta_pct": -4.3,
+  "delta_pct": -2.7,
   "st": 498,
   "st_plan": 586,
   "st_pct": 85,
@@ -24,12 +24,12 @@ window.DASH_DATA = {
  "departments": [
   {
    "name": "ТЗ",
-   "pt": 1217,
-   "real": 2440467.75,
+   "pt": 1348,
+   "real": 2499917.75,
    "real_plan": 2250000,
-   "real_pct": 108,
+   "real_pct": 111,
    "prev": 2080933.75,
-   "delta_pct": 17.3,
+   "delta_pct": 20.1,
    "st": 162,
    "st_plan": 170,
    "st_pct": 95,
