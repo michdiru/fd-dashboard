@@ -538,4 +538,3 @@ window.DASH_DATA = {
   ]
  }
 };
-document.write('<script src="metrics-overlay.js"><\/script>');

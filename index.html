@@ -152,6 +152,8 @@
   td{padding:8.5px 7px;font-size:13px;text-align:right;border-bottom:1px solid var(--divider);white-space:nowrap;}
   td.dept{text-align:left;font-weight:700;}
   td.dept .dept-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:1px;}
+  .dept-meta,.metric-sub{display:block;font-size:9px;color:var(--text-3);font-weight:600;margin-top:1px;}
+  .dept-meta{margin-left:16px;}
   tbody tr:last-child td{border-bottom:none;}
   tfoot td{font-weight:800;border-top:1px solid var(--divider);border-bottom:none;}
   .muted{color:var(--text-3);}
@@ -180,8 +182,8 @@
   .rank-sales.zero{color:var(--text-3);font-weight:600;}
   .rank-hdr{display:grid;grid-template-columns:15px 126px 1fr 24px 42px;gap:7px;font-size:8.5px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;}
   .rank-hdr span{text-align:right;}
-  .lb-grid .lb-col{gap:11px;}
-  .rank-list{gap:3.2px;}
+  .lb-grid .lb-col{gap:4px;}
+  .rank-list{gap:2.6px;}
   .rank-num{font-size:9.5px;font-weight:800;color:var(--text-3);text-align:right;}
   .rank-row.medal .rank-num{color:var(--orange);}
   .rank-name{font-size:10.8px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.25;}
@@ -201,7 +203,7 @@
     .masthead{flex-wrap:wrap;gap:6px;}
     .m-upd{margin-left:0;flex-basis:100%;}
     .tbl-card{overflow-x:auto;}
-    table{min-width:640px;}
+    table{min-width:760px;}
     .lb-grid{flex-direction:column;}
     .rank-row,.rank-hdr{grid-template-columns:15px 108px 1fr 24px 42px;}
   }
@@ -320,15 +322,18 @@
       '</div>'+
       '<div class="hero-cells">'+
         '<div class="hero-cell"><div class="hero-cap">Стартовые (СТ)</div><div class="hero-big num">'+t.st+' <small>из '+t.st_plan+'</small></div><div style="margin-top:3px;">'+pill(t.st_pct)+'</div></div>'+
-        '<div class="hero-cell"><div class="hero-cap">Персональные (ПТ)</div><div class="hero-big num">'+fmtInt(t.pt)+'</div></div>'+
+        '<div class="hero-cell"><div class="hero-cap">Персональные (ПТ)</div><div class="hero-big num">'+fmtInt(t.pt)+'</div><div class="hero-cap num">'+fmtInt(t.pt_clients||0)+' уник.</div></div>'+
         '<div class="hero-cell"><div class="hero-cap">Прошлый год</div><div class="hero-big num">'+mln(t.prev)+' <small>млн ₽</small></div></div>'+
       '</div>';
 
     /* table */
     var rows = D.departments.map(function(d){
       return '<tr>'+
-        '<td class="dept"><span class="dept-dot" style="background:'+DEPT_COLOR[d.name]+'"></span>'+esc(d.name)+'</td>'+
-        '<td class="num">'+(d.pt?fmtInt(d.pt):'<span class="muted">0</span>')+'</td>'+
+        '<td class="dept"><span class="dept-dot" style="background:'+DEPT_COLOR[d.name]+'"></span>'+esc(d.name)+
+          '<span class="dept-meta">секции/студии: '+fmtInt(d.studio||0)+'</span></td>'+
+        '<td class="num">'+fmtInt(d.clients||0)+'</td>'+
+        '<td class="num">'+(d.pt?fmtInt(d.pt):'<span class="muted">0</span>')+
+          '<span class="metric-sub">'+fmtInt(d.pt_clients||0)+' уник.</span></td>'+
         '<td class="num grp-sep">'+mln(d.real)+'</td>'+
         '<td>'+pill(d.real_pct)+'</td>'+
         '<td class="num">'+mln(d.prev)+'</td>'+
@@ -339,13 +344,15 @@
     }).join('');
     document.getElementById('deptTable').innerHTML =
       '<thead>'+
-        '<tr class="grp"><th class="dept-h"></th><th></th><th colspan="4" class="grp-sep">Реализация</th><th colspan="2" class="grp-sep">СТ</th></tr>'+
-        '<tr><th class="dept-h">Департамент</th><th>ПТ</th>'+
+        '<tr class="grp"><th class="dept-h"></th><th>Клиенты</th><th>ПТ</th><th colspan="4" class="grp-sep">Реализация</th><th colspan="2" class="grp-sep">СТ</th></tr>'+
+        '<tr><th class="dept-h">Департамент</th><th>уник.</th><th>шт / уник.</th>'+
         '<th class="grp-sep">млн ₽</th><th>% плана</th><th>Прошлый год</th><th>Δ</th>'+
         '<th class="grp-sep">Кол-во</th><th>% плана</th></tr>'+
       '</thead><tbody>'+rows+'</tbody>'+
       '<tfoot><tr>'+
-        '<td class="dept">ФД — итого</td><td class="num">'+fmtInt(t.pt)+'</td>'+
+        '<td class="dept">ФД — итого<span class="dept-meta">секции/студии: '+fmtInt(t.studio||0)+'</span></td>'+
+        '<td class="num">'+fmtInt(t.clients||0)+'</td>'+
+        '<td class="num">'+fmtInt(t.pt)+'<span class="metric-sub">'+fmtInt(t.pt_clients||0)+' уник.</span></td>'+
         '<td class="num grp-sep">'+mln(t.real)+'</td><td>'+pill(t.real_pct)+'</td>'+
         '<td class="num">'+mln(t.prev)+'</td><td>'+delta(t.delta_pct)+'</td>'+
         '<td class="num grp-sep">'+t.st+'<span class="st-conv">план '+t.st_plan+'</span></td><td>'+pill(t.st_pct)+'</td>'+
@@ -354,7 +361,8 @@
     document.getElementById('footNote').textContent =
       '* Факт за '+D.period.from+'–'+D.period.to+' из выгрузок A&A; прошлый год — '+
       D.prev_period.from+'–'+D.prev_period.to+' из Google-таблицы. Восточные единоборства учтены в БК, '+
-      'все статьи «мероприятия» суммированы в «Мероприятия ФД». Планы на месяц — data/plans.json.';
+      'все статьи «мероприятия» суммированы в «Мероприятия ФД». Уникальные клиенты считаются по ID в FIO; '+
+      'секции/студии — сумма Qty услуг со словами «Секция» или «Студия». Планы на месяц — data/plans.json.';
 
     /* trainer panels: все тренеры каждого департамента */
     function panelHTML(dep){
