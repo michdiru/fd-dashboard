@@ -8,10 +8,11 @@
 историю прошлого года из data/history_2025.csv и планы из data/plans.json,
 пишет data.js в корень репозитория.
 
-Отчётный период: с 1-го числа месяца последней транзакции по дату последней
-транзакции в выгрузке (а не «по сегодня»: выгрузка A&A может отставать на
-день-два, и сравнение с прошлым годом должно идти по одинаковым окнам).
-На границе месяцев можно явно указать отчётный месяц через ``--month``.
+Для каждого департамента берётся самый новый real/st-файл в папке; старые копии
+не смешиваются с актуальной. Готовые real-выгрузки A&A уже содержат итог отчёта:
+в реализацию входят все их строки. ``DateValue`` нужен для подписи периода и сравнения с
+прошлым годом, но не для повторной фильтрации строк.
+На границе месяцев можно явно указать месяц подписи через ``--month``.
 """
 import csv
 import glob
@@ -26,6 +27,10 @@ from datetime import datetime
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEPTS = ["ТЗ", "ГП", "БК", "ДЦ", "Мероприятия ФД", "Массаж", "СМ"]
+ST_DEPTS = ["ТЗ", "ГП", "БК", "ДЦ", "Массаж", "СМ"]
+REAL_COLUMNS = ["SectionName", "ResourceName", "FIO", "Price", "Qty", "Summa",
+                "Name", "DateValue"]
+ST_COLUMNS = ["ResourceName", "FIO", "ExQnt", "Qnt", "Cr", "DetailName", "GroupLevel"]
 FILE_CODE = {"tz": "ТЗ", "gp": "ГП", "bk": "БК", "dc": "ДЦ",
              "mer": "Мероприятия ФД", "ms": "Массаж", "sm": "СМ"}
 SECTION_MAP = {
@@ -55,6 +60,26 @@ def dept_from_filename(path):
     return FILE_CODE.get(m.group(1)) if m else None
 
 
+def latest_files_by_department(paths):
+    """По одному самому новому файлу на департамент.
+
+    Основной признак — время изменения. При равенстве файл с суффиксом
+    ``(1)``, ``(2)`` и т. д. считается более новой копией.
+    """
+    selected = {}
+    for path in paths:
+        dep = dept_from_filename(path)
+        if dep is None:
+            continue
+        basename = os.path.basename(path)
+        match = re.search(r"\((\d+)\)(?=\.csv$)", basename, re.IGNORECASE)
+        copy_number = int(match.group(1)) if match else 0
+        rank = (os.stat(path).st_mtime_ns, copy_number, basename.casefold())
+        if dep not in selected or rank > selected[dep][0]:
+            selected[dep] = (rank, path)
+    return {dep: value[1] for dep, value in selected.items()}
+
+
 def title_name(raw):
     """АХТЯЛТДИНОВ И. Р. -> Ахтялтдинов И. Р. (дефисы и инициалы сохраняются)."""
     def cap(w):
@@ -78,22 +103,46 @@ def client_key(raw):
 def read_rows(path):
     with open(path, encoding="utf-16") as f:
         rd = csv.reader(f, delimiter="\t")
-        hdr = next(rd)
+        try:
+            hdr = next(rd)
+        except StopIteration:
+            sys.exit(f"Пустой файл: {os.path.basename(path)}")
         idx = {h: i for i, h in enumerate(hdr)}
-        for r in rd:
-            if r and len(r) >= len([h for h in hdr if h]):
-                yield idx, r
+        required = REAL_COLUMNS if os.path.basename(path).lower().startswith("real") else ST_COLUMNS
+        missing = [column for column in required if column not in idx]
+        if missing:
+            sys.exit(f"В {os.path.basename(path)} нет колонок: {', '.join(missing)}")
+        last_required_index = max(idx[column] for column in required)
+        for line_number, r in enumerate(rd, start=2):
+            if not r or not any(cell.strip() for cell in r):
+                continue
+            if len(r) <= last_required_index:
+                sys.exit(f"Неполная строка {line_number} в {os.path.basename(path)}")
+            yield idx, r
 
 
 def main(export_dir, report_month=None):
-    real_files = sorted(glob.glob(os.path.join(export_dir, "real*.csv")))
-    st_files = sorted(glob.glob(os.path.join(export_dir, "st*.csv")))
-    if not real_files:
+    real_candidates = sorted(glob.glob(os.path.join(export_dir, "real*.csv")))
+    st_candidates = sorted(glob.glob(os.path.join(export_dir, "st*.csv")))
+    if not real_candidates:
         sys.exit(f"В {export_dir} нет файлов real*.csv")
 
-    # Месяц из plans.json — основной ориентир для автоматического запуска:
-    # на границе месяца real-файлы уже могут содержать новые операции, тогда
-    # как планы и бездатовые st-файлы ещё относятся к завершённому месяцу.
+    real_by_dep = latest_files_by_department(real_candidates)
+    st_by_dep = latest_files_by_department(st_candidates)
+    missing_real = [dep for dep in DEPTS if dep not in real_by_dep]
+    missing_st = [dep for dep in ST_DEPTS if dep not in st_by_dep]
+    if missing_real or missing_st:
+        parts = []
+        if missing_real:
+            parts.append("нет real: " + ", ".join(missing_real))
+        if missing_st:
+            parts.append("нет st: " + ", ".join(missing_st))
+        sys.exit("Неполная выгрузка (" + "; ".join(parts) + ")")
+    real_files = [real_by_dep[dep] for dep in DEPTS]
+    st_files = [st_by_dep[dep] for dep in ST_DEPTS]
+
+    # Месяц из plans.json задаёт подпись периода и окно сравнения,
+    # но не фильтрует строки готовой real-выгрузки.
     with open(os.path.join(ROOT, "data", "plans.json"), encoding="utf-8") as f:
         plans = json.load(f)
     plan_real = plans["реализация"]
@@ -123,7 +172,7 @@ def main(export_dir, report_month=None):
         try:
             dt = datetime.strptime(datevalue.strip(), "%d.%m.%Y %H:%M:%S")
         except ValueError:
-            continue
+            sys.exit(f"Неверная DateValue в real-выгрузке: {datevalue!r}")
         dep = canon_section(section)
         if dep is None:
             continue
@@ -152,16 +201,18 @@ def main(export_dir, report_month=None):
     clients = defaultdict(set)
     pt_clients = defaultdict(set)
     studio = defaultdict(int)
-    for dep, dt, summa, is_pt, client, studio_qty in txns:
-        if start <= dt <= end.replace(hour=23, minute=59, second=59):
-            real[dep] += summa
+    # A&A уже формирует real-файлы в границах нужного отчёта. Поэтому
+    # суммируем всю выгрузку: повторный фильтр по DateValue отбрасывает часть
+    # итога, который уже задан параметрами отчёта A&A.
+    for dep, _dt, summa, is_pt, client, studio_qty in txns:
+        real[dep] += summa
+        if client:
+            clients[dep].add(client)
+        if is_pt:
+            pt[dep] += 1
             if client:
-                clients[dep].add(client)
-            if is_pt:
-                pt[dep] += 1
-                if client:
-                    pt_clients[dep].add(client)
-            studio[dep] += studio_qty
+                pt_clients[dep].add(client)
+        studio[dep] += studio_qty
 
     # --- прошлый период: те же числа месяца годом ранее, из history CSV ---
     prev_start = start.replace(year=start.year - 1).date().isoformat()
@@ -183,9 +234,9 @@ def main(export_dir, report_month=None):
         for idx, r in read_rows(p):
             try:
                 q = int(num(r[idx["ExQnt"]]))
-            except (KeyError, ValueError):
-                continue
-            sales = int(num(r[idx["Qnt"]]))
+                sales = int(num(r[idx["Qnt"]]))
+            except ValueError:
+                sys.exit(f"Неверное ExQnt/Qnt в {os.path.basename(p)}")
             st[dep] += q
             st_sales[dep] += sales
             t = trainers[dep][title_name(r[idx["ResourceName"]])]
