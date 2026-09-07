@@ -105,6 +105,10 @@
   }
   .title{font-size:27px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;}
   .title .grad{background:linear-gradient(90deg,var(--blue),var(--purple) 55%,var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .month-select{
+    align-self:center;padding:5px 28px 5px 10px;border-radius:99px;border:1px solid var(--divider);
+    background:var(--card);color:var(--text);font:inherit;font-size:12px;font-weight:700;cursor:pointer;
+  }
   .m-sub{font-size:13px;color:var(--text-2);}
   .m-upd{margin-left:auto;font-size:11.5px;color:var(--text-3);}
   .theme-btn{
@@ -218,6 +222,7 @@
     <div class="masthead">
       <div class="logo"><img src="logo.png" alt="Королеф Фитнес"></div>
       <div class="title">Показатели <span class="grad">фитнес-департамента</span></div>
+      <select class="month-select" id="monthSelect" aria-label="Выбрать месяц"></select>
       <div class="m-sub" id="periodLine"></div>
       <div class="m-upd" id="updLine"></div>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Переключить тему"></button>
@@ -272,12 +277,43 @@
     apply();
   })();
   </script>
+  <script src="data/archive.js"></script>
   <script src="data.js"></script>
   <script>
   (function(){
     window.__fdTheme.init();
-    var D = window.DASH_DATA;
-    if(!D){ document.getElementById('periodLine').textContent = 'Нет данных: не найден data.js'; return; }
+    var currentData = window.DASH_DATA;
+    if(!currentData){ document.getElementById('periodLine').textContent = 'Нет данных: не найден data.js'; return; }
+    var archive = window.DASH_ARCHIVE || {};
+
+    function monthKey(data){
+      var p = (data.period && data.period.from || '').split('.');
+      return p.length === 3 ? p[2]+'-'+p[1] : '';
+    }
+    function monthLabel(key){
+      var names = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+      var p = key.split('-'), label = names[Number(p[1])-1] || key;
+      return label.charAt(0).toUpperCase()+label.slice(1)+' '+p[0];
+    }
+
+    var currentKey = monthKey(currentData);
+    var requestedKey = new URLSearchParams(window.location.search).get('month');
+    var D = requestedKey && archive[requestedKey] ? archive[requestedKey] : currentData;
+    var selectedKey = requestedKey && archive[requestedKey] ? requestedKey : currentKey;
+    var months = Object.keys(archive);
+    if(months.indexOf(currentKey) < 0) months.push(currentKey);
+    months.sort().reverse();
+    var monthSelect = document.getElementById('monthSelect');
+    monthSelect.innerHTML = months.map(function(key){
+      return '<option value="'+key+'"'+(key===selectedKey?' selected':'')+'>'+monthLabel(key)+'</option>';
+    }).join('');
+    monthSelect.addEventListener('change', function(){
+      var url = new URL(window.location.href);
+      if(this.value === currentKey) url.searchParams.delete('month');
+      else url.searchParams.set('month', this.value);
+      url.searchParams.delete('v');
+      window.location.href = url.pathname + (url.search ? url.search : '');
+    });
 
     var DEPT_COLOR = {
       'ТЗ':'var(--blue)','ГП':'var(--indigo)','БК':'var(--purple)','ДЦ':'var(--yellow)',

@@ -121,6 +121,47 @@ def read_rows(path):
             yield idx, r
 
 
+def read_js_object(path, variable):
+    """Читает JSON-объект из файла вида ``window.NAME = {...};``."""
+    with open(path, encoding="utf-8") as f:
+        text = f.read()
+    match = re.fullmatch(
+        rf"\s*window\.{re.escape(variable)}\s*=\s*(\{{.*\}});\s*",
+        text,
+        re.DOTALL,
+    )
+    if not match:
+        sys.exit(f"Не удалось прочитать {os.path.basename(path)}")
+    return json.loads(match.group(1))
+
+
+def archive_current_dashboard(next_month):
+    """Переносит текущий агрегат в архив при смене месяца."""
+    current_path = os.path.join(ROOT, "data.js")
+    if not os.path.exists(current_path):
+        return None
+    current = read_js_object(current_path, "DASH_DATA")
+    try:
+        current_month = datetime.strptime(current["period"]["from"], "%d.%m.%Y").strftime("%Y-%m")
+    except (KeyError, TypeError, ValueError):
+        sys.exit("В data.js неверно указан период")
+    if current_month == next_month:
+        return None
+
+    archive_path = os.path.join(ROOT, "data", "archive.js")
+    archive = read_js_object(archive_path, "DASH_ARCHIVE") if os.path.exists(archive_path) else {}
+    if current_month in archive:
+        return current_month
+    archive[current_month] = current
+    temp_path = archive_path + ".tmp"
+    with open(temp_path, "w", encoding="utf-8") as f:
+        f.write("window.DASH_ARCHIVE = ")
+        json.dump(dict(sorted(archive.items())), f, ensure_ascii=False, indent=1)
+        f.write(";\n")
+    os.replace(temp_path, archive_path)
+    return current_month
+
+
 def main(export_dir, report_month=None):
     real_candidates = sorted(glob.glob(os.path.join(export_dir, "real*.csv")))
     st_candidates = sorted(glob.glob(os.path.join(export_dir, "st*.csv")))
@@ -311,12 +352,15 @@ def main(export_dir, report_month=None):
         "trainers": trainer_panels,
     }
 
+    archived_month = archive_current_dashboard(effective_month or start.strftime("%Y-%m"))
     out = os.path.join(ROOT, "data.js")
     with open(out, "w", encoding="utf-8") as f:
         f.write("window.DASH_DATA = ")
         json.dump(data, f, ensure_ascii=False, indent=1)
         f.write(";\n")
     print(f"OK: {out}")
+    if archived_month:
+        print(f"Архив: {archived_month}")
     print(f"Период {data['period']['from']}–{data['period']['to']}: "
           f"реализация {totals['real']/1e6:.3f} млн ({totals['real_pct']}%), "
           f"ПТ {totals['pt']}, СТ {totals['st']} ({totals['st_pct']}%)")
