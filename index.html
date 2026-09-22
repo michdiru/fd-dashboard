@@ -277,10 +277,31 @@
     apply();
   })();
   </script>
-  <script src="data/archive.js"></script>
-  <script src="data.js"></script>
   <script>
-  (function(){
+  function loadDashboardScript(path, done){
+    var script = document.createElement('script');
+    script.src = path + '?v=' + Date.now();
+    script.onload = done;
+    script.onerror = function(){
+      document.getElementById('periodLine').textContent = 'Не удалось загрузить данные. Повтор через минуту…';
+      setTimeout(function(){ loadDashboardScript(path, done); }, 60000);
+    };
+    document.head.appendChild(script);
+  }
+  var dashboardRefreshAt = Date.now() + 60 * 60 * 1000;
+  function refreshDashboardIfDue(){
+    if(Date.now() < dashboardRefreshAt || navigator.onLine === false) return;
+    var url = new URL(window.location.href);
+    url.searchParams.set('v', Date.now());
+    window.location.replace(url.href);
+  }
+  setInterval(refreshDashboardIfDue, 60000);
+  window.addEventListener('online', refreshDashboardIfDue);
+  document.addEventListener('visibilitychange', refreshDashboardIfDue);
+  loadDashboardScript('data/archive.js', function(){
+    loadDashboardScript('data.js', renderDashboard);
+  });
+  function renderDashboard(){
     window.__fdTheme.init();
     var currentData = window.DASH_DATA;
     if(!currentData){ document.getElementById('periodLine').textContent = 'Нет данных: не найден data.js'; return; }
@@ -450,7 +471,7 @@
     }
     fit();
     window.addEventListener('resize', fit);
-  })();
+  }
   </script>
 </body>
 </html>
