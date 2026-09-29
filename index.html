@@ -345,6 +345,10 @@
 
     function esc(s){ return String(s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
     function mln(v){ return (v/1e6).toFixed(2); }
+    function forecastCell(d){
+      return d.forecast_real == null ? '<span class="muted">—</span>' :
+        mln(d.forecast_real)+'<span class="metric-sub">'+d.forecast_pct+'% плана</span>';
+    }
     function fmtInt(v){ return v.toLocaleString('ru-RU'); }
     function pill(p){
       if(p==null) return '<span class="muted">—</span>';
@@ -375,6 +379,7 @@
       '</div>'+
       '<div style="flex:0 0 auto"><div class="hero-cap">План по реализации, общий ФД</div>'+
         '<div class="hero-big num">'+mln(t.real)+' <small>из '+mln(t.real_plan)+' млн ₽</small></div>'+
+        (t.forecast_real != null ? '<div style="font-size:12px;margin-top:4px">Прогноз: <b>'+mln(t.forecast_real)+' млн ₽ · '+t.forecast_pct+'%</b></div>' : '')+
         '<div style="font-size:12px;margin-top:3px;">'+delta(t.delta_pct)+' <span class="hero-cap" style="font-weight:600">к прошлому году</span></div>'+
       '</div>'+
       '<div class="hero-cells">'+
@@ -393,6 +398,7 @@
           '<span class="metric-sub">'+fmtInt(d.pt_clients||0)+' уник.</span></td>'+
         '<td class="num grp-sep">'+mln(d.real)+'</td>'+
         '<td>'+pill(d.real_pct)+'</td>'+
+        '<td class="num">'+forecastCell(d)+'</td>'+
         '<td class="num">'+mln(d.prev)+'</td>'+
         '<td>'+delta(d.delta_pct)+'</td>'+
         '<td class="num grp-sep">'+(d.st!=null?d.st+'<span class="st-conv">план '+d.st_plan+'</span>':'<span class="muted">—</span>')+'</td>'+
@@ -401,9 +407,9 @@
     }).join('');
     document.getElementById('deptTable').innerHTML =
       '<thead>'+
-        '<tr class="grp"><th class="dept-h"></th><th>Клиенты</th><th>ПТ</th><th colspan="4" class="grp-sep">Реализация</th><th colspan="2" class="grp-sep">СТ</th></tr>'+
+        '<tr class="grp"><th class="dept-h"></th><th>Клиенты</th><th>ПТ</th><th colspan="5" class="grp-sep">Реализация</th><th colspan="2" class="grp-sep">СТ</th></tr>'+
         '<tr><th class="dept-h">Департамент</th><th>уник.</th><th>шт / уник.</th>'+
-        '<th class="grp-sep">млн ₽</th><th>% плана</th><th>Прошлый год</th><th>Δ</th>'+
+        '<th class="grp-sep">млн ₽</th><th>% плана</th><th title="Факт плюс прогноз оставшихся дней по средним соответствующих дней недели">Прогноз, млн ₽</th><th>Прошлый год</th><th>Δ</th>'+
         '<th class="grp-sep">Кол-во</th><th>% плана</th></tr>'+
       '</thead><tbody>'+rows+'</tbody>'+
       '<tfoot><tr>'+
@@ -411,6 +417,7 @@
         '<td class="num">'+fmtInt(t.clients||0)+'</td>'+
         '<td class="num">'+fmtInt(t.pt)+'<span class="metric-sub">'+fmtInt(t.pt_clients||0)+' уник.</span></td>'+
         '<td class="num grp-sep">'+mln(t.real)+'</td><td>'+pill(t.real_pct)+'</td>'+
+        '<td class="num">'+forecastCell(t)+'</td>'+
         '<td class="num">'+mln(t.prev)+'</td><td>'+delta(t.delta_pct)+'</td>'+
         '<td class="num grp-sep">'+t.st+'<span class="st-conv">план '+t.st_plan+'</span></td><td>'+pill(t.st_pct)+'</td>'+
       '</tr></tfoot>';
@@ -419,7 +426,8 @@
       '* Факт за '+D.period.from+'–'+D.period.to+' из выгрузок A&A; прошлый год — '+
       D.prev_period.from+'–'+D.prev_period.to+' из Google-таблицы. Восточные единоборства учтены в БК, '+
       'все статьи «мероприятия» суммированы в «Мероприятия ФД». Уникальные клиенты считаются по ID в FIO; '+
-      'секции/студии — сумма Qty услуг со словами «Секция» или «Студия». Планы на месяц — data/plans.json.';
+      'секции/студии — сумма Qty услуг со словами «Секция» или «Студия». Планы на месяц — data/plans.json.'+
+      (D.forecast ? ' Прогноз: средние по дням недели текущего месяца, включая нулевые дни, по '+D.forecast.through+'. Даты вне месяца — только в факте. Праздники и разовые мероприятия не учитываются отдельно.'+(D.forecast.available ? '' : ' Пока недостаточно данных: нужны минимум два наблюдения соответствующих дней недели.') : '');
 
     /* trainer panels: все тренеры каждого департамента */
     function panelHTML(dep){

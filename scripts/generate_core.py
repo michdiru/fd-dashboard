@@ -22,7 +22,8 @@ import re
 import sys
 import unicodedata
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
+import calendar
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -342,7 +343,36 @@ def main(export_dir, report_month=None):
         for dep, trs in trainers.items()
     }
 
+    # Zero-revenue days count as observations; partial today never trains the model.
+    month_end = start.date().replace(day=calendar.monthrange(start.year, start.month)[1])
+    cutoff = min(end.date(), datetime.now().date() - timedelta(days=1), month_end)
+    observed = [0] * 7
+    remaining = [0] * 7
+    day = start.date()
+    while day <= month_end:
+        (observed if day <= cutoff else remaining)[day.weekday()] += 1
+        day += timedelta(days=1)
+    weekday_real = defaultdict(lambda: [0.0] * 7)
+    partial_real = defaultdict(float)
+    for dep, dt, amount, *_ in txns:
+        if start.date() <= dt.date() <= cutoff:
+            weekday_real[dep][dt.weekday()] += amount
+        elif cutoff < dt.date() <= month_end:
+            partial_real[dep] += amount
+    available = all(not remaining[i] or observed[i] >= 2 for i in range(7))
+    for dep in departments:
+        estimate = None
+        if available:
+            future = sum(weekday_real[dep['name']][i] / observed[i] * remaining[i]
+                         for i in range(7) if remaining[i])
+            estimate = round(dep['real'] + max(0, future - partial_real[dep['name']]), 2)
+        dep['forecast_real'] = estimate
+        dep['forecast_pct'] = round(estimate / dep['real_plan'] * 100, 1) if estimate is not None and dep['real_plan'] else None
+    totals['forecast_real'] = round(sum(d['forecast_real'] for d in departments), 2) if available else None
+    totals['forecast_pct'] = round(totals['forecast_real'] / total_plan * 100, 1) if available and total_plan else None
+
     data = {
+        "forecast": {"method": "weekday_mean", "through": cutoff.strftime("%d.%m.%Y"), "available": available},
         "generated_at": datetime.now().strftime("%d.%m.%Y %H:%M"),
         "period": {"from": start.strftime("%d.%m.%Y"), "to": end.strftime("%d.%m.%Y")},
         "prev_period": {"from": datetime.fromisoformat(prev_start).strftime("%d.%m.%Y"),

@@ -1,5 +1,10 @@
 window.DASH_DATA = {
- "generated_at": "29.09.2026 08:09",
+ "forecast": {
+  "method": "weekday_mean",
+  "through": "28.09.2026",
+  "available": true
+ },
+ "generated_at": "29.09.2026 08:26",
  "period": {
   "from": "01.09.2026",
   "to": "28.09.2026"
@@ -22,7 +27,9 @@ window.DASH_DATA = {
   "st_plan": 687,
   "st_pct": 75,
   "st_sales": 95,
-  "st_sales_pct": 19
+  "st_sales_pct": 19,
+  "forecast_real": 4442555.94,
+  "forecast_pct": 92.6
  },
  "departments": [
   {
@@ -40,7 +47,9 @@ window.DASH_DATA = {
    "st_plan": 200,
    "st_pct": 90,
    "st_sales": 50,
-   "st_sales_pct": 28
+   "st_sales_pct": 28,
+   "forecast_real": 2652244.25,
+   "forecast_pct": 106.1
   },
   {
    "name": "ГП",
@@ -57,7 +66,9 @@ window.DASH_DATA = {
    "st_plan": 105,
    "st_pct": 70,
    "st_sales": 18,
-   "st_sales_pct": 25
+   "st_sales_pct": 25,
+   "forecast_real": 824616.25,
+   "forecast_pct": 82.5
   },
   {
    "name": "БК",
@@ -74,7 +85,9 @@ window.DASH_DATA = {
    "st_plan": 40,
    "st_pct": 60,
    "st_sales": 3,
-   "st_sales_pct": 12
+   "st_sales_pct": 12,
+   "forecast_real": 197687.44,
+   "forecast_pct": 79.1
   },
   {
    "name": "ДЦ",
@@ -91,7 +104,9 @@ window.DASH_DATA = {
    "st_plan": 12,
    "st_pct": 33,
    "st_sales": 2,
-   "st_sales_pct": 50
+   "st_sales_pct": 50,
+   "forecast_real": 308306.75,
+   "forecast_pct": 118.6
   },
   {
    "name": "Мероприятия ФД",
@@ -108,7 +123,9 @@ window.DASH_DATA = {
    "st_plan": null,
    "st_pct": null,
    "st_sales": null,
-   "st_sales_pct": null
+   "st_sales_pct": null,
+   "forecast_real": 211250.0,
+   "forecast_pct": 117.4
   },
   {
    "name": "Массаж",
@@ -125,7 +142,9 @@ window.DASH_DATA = {
    "st_plan": 90,
    "st_pct": 31,
    "st_sales": 1,
-   "st_sales_pct": 4
+   "st_sales_pct": 4,
+   "forecast_real": 184321.25,
+   "forecast_pct": 36.1
   },
   {
    "name": "СМ",
@@ -142,7 +161,9 @@ window.DASH_DATA = {
    "st_plan": 240,
    "st_pct": 84,
    "st_sales": 21,
-   "st_sales_pct": 10
+   "st_sales_pct": 10,
+   "forecast_real": 64130.0,
+   "forecast_pct": 64.1
   }
  ],
  "trainers": {
