@@ -383,7 +383,7 @@
         '<div style="font-size:12px;margin-top:3px;">'+delta(t.delta_pct)+' <span class="hero-cap" style="font-weight:600">к прошлому году</span></div>'+
       '</div>'+
       '<div class="hero-cells">'+
-        '<div class="hero-cell"><div class="hero-cap">Стартовые (СТ)</div><div class="hero-big num">'+t.st+' <small>из '+t.st_plan+'</small></div><div style="margin-top:3px;">'+pill(t.st_pct)+'</div></div>'+
+        '<div class="hero-cell"><div class="hero-cap">Стартовые (СТ)</div><div class="hero-big num">'+t.st+' <small>'+(t.st_plan==null?'план не задан':'из '+t.st_plan)+'</small></div><div style="margin-top:3px;">'+pill(t.st_pct)+'</div></div>'+
         '<div class="hero-cell"><div class="hero-cap">Персональные (ПТ)</div><div class="hero-big num">'+fmtInt(t.pt)+'</div><div class="hero-cap num">'+fmtInt(t.pt_clients||0)+' уник.</div></div>'+
         '<div class="hero-cell"><div class="hero-cap">Прошлый год</div><div class="hero-big num">'+mln(t.prev)+' <small>млн ₽</small></div></div>'+
       '</div>';
@@ -401,7 +401,7 @@
         '<td class="num">'+forecastCell(d)+'</td>'+
         '<td class="num">'+mln(d.prev)+'</td>'+
         '<td>'+delta(d.delta_pct)+'</td>'+
-        '<td class="num grp-sep">'+(d.st!=null?d.st+'<span class="st-conv">план '+d.st_plan+'</span>':'<span class="muted">—</span>')+'</td>'+
+        '<td class="num grp-sep">'+(d.st!=null?d.st+'<span class="st-conv">'+(d.st_plan==null?'план не задан':'план '+d.st_plan)+'</span>':'<span class="muted">—</span>')+'</td>'+
         '<td>'+pill(d.st_pct)+'</td>'+
       '</tr>';
     }).join('');
@@ -419,7 +419,7 @@
         '<td class="num grp-sep">'+mln(t.real)+'</td><td>'+pill(t.real_pct)+'</td>'+
         '<td class="num">'+forecastCell(t)+'</td>'+
         '<td class="num">'+mln(t.prev)+'</td><td>'+delta(t.delta_pct)+'</td>'+
-        '<td class="num grp-sep">'+t.st+'<span class="st-conv">план '+t.st_plan+'</span></td><td>'+pill(t.st_pct)+'</td>'+
+        '<td class="num grp-sep">'+t.st+'<span class="st-conv">'+(t.st_plan==null?'план не задан':'план '+t.st_plan)+'</span></td><td>'+pill(t.st_pct)+'</td>'+
       '</tr></tfoot>';
 
     document.getElementById('footNote').textContent =

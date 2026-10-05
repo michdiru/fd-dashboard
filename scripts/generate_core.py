@@ -187,9 +187,14 @@ def main(export_dir, report_month=None):
     # но не фильтрует строки готовой real-выгрузки.
     with open(os.path.join(ROOT, "data", "plans.json"), encoding="utf-8") as f:
         plans = json.load(f)
-    plan_real = plans["реализация"]
-    plan_st = plans["СТ"]
     effective_month = report_month or plans.get("месяц")
+    month_plans = plans.get("по_месяцам", {}).get(effective_month)
+    if month_plans is None:
+        if effective_month != plans.get("месяц"):
+            sys.exit(f"Не заданы планы на {effective_month}")
+        month_plans = plans
+    plan_real = month_plans["реализация"]
+    plan_st = month_plans.get("СТ", {})
 
     # --- реализация ---
     # Выгрузка A&A иногда кладёт один и тот же блок транзакций в несколько
@@ -328,7 +333,7 @@ def main(export_dir, report_month=None):
         "prev": round(total_prev, 2),
         "delta_pct": round((total_real - total_prev) / total_prev * 100, 1) if total_prev else None,
         "st": sum(st.values()),
-        "st_plan": sum(plan_st.values()),
+        "st_plan": sum(plan_st.values()) if all(dep in plan_st for dep in ST_DEPTS) else None,
         "st_pct": pct(sum(st.values()), sum(plan_st.values())),
         "st_sales": sum(st_sales.values()),
         "st_sales_pct": conv_pct(sum(st.values()), sum(st_sales.values())),
