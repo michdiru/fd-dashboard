@@ -4,7 +4,7 @@ window.DASH_DATA = {
   "through": "30.09.2026",
   "available": true
  },
- "generated_at": "05.10.2026 10:40",
+ "generated_at": "06.10.2026 15:57",
  "period": {
   "from": "01.09.2026",
   "to": "30.09.2026"
@@ -14,42 +14,42 @@ window.DASH_DATA = {
   "to": "30.09.2025"
  },
  "totals": {
-  "pt": 1967,
-  "clients": 1051,
-  "pt_clients": 516,
+  "pt": 1966,
+  "clients": 1097,
+  "pt_clients": 515,
   "studio": 1135,
-  "real": 4659554.8,
+  "real": 4713801.8,
   "real_plan": 4800000,
-  "real_pct": 97,
+  "real_pct": 98,
   "prev": 4332395.75,
-  "delta_pct": 7.6,
-  "st": 578,
+  "delta_pct": 8.8,
+  "st": 646,
   "st_plan": 687,
-  "st_pct": 84,
-  "st_sales": 118,
-  "st_sales_pct": 20,
-  "forecast_real": 4659554.8,
-  "forecast_pct": 97.1
+  "st_pct": 94,
+  "st_sales": 121,
+  "st_sales_pct": 19,
+  "forecast_real": 4713801.8,
+  "forecast_pct": 98.2
  },
  "departments": [
   {
    "name": "ТЗ",
-   "pt": 1458,
+   "pt": 1457,
    "clients": 510,
-   "pt_clients": 388,
+   "pt_clients": 387,
    "studio": 376,
-   "real": 2775394.8,
+   "real": 2772844.8,
    "real_plan": 2500000,
    "real_pct": 111,
    "prev": 2404679.0,
-   "delta_pct": 15.4,
+   "delta_pct": 15.3,
    "st": 203,
    "st_plan": 200,
    "st_pct": 101,
-   "st_sales": 68,
+   "st_sales": 67,
    "st_sales_pct": 33,
-   "forecast_real": 2775394.8,
-   "forecast_pct": 111.0
+   "forecast_real": 2772844.8,
+   "forecast_pct": 110.9
   },
   {
    "name": "ГП",
@@ -130,21 +130,21 @@ window.DASH_DATA = {
   {
    "name": "Массаж",
    "pt": 0,
-   "clients": 83,
+   "clients": 156,
    "pt_clients": 0,
    "studio": 0,
-   "real": 185252.5,
+   "real": 242339.5,
    "real_plan": 510000,
-   "real_pct": 36,
+   "real_pct": 48,
    "prev": 474579.0,
-   "delta_pct": -61.0,
-   "st": 30,
+   "delta_pct": -48.9,
+   "st": 98,
    "st_plan": 90,
-   "st_pct": 33,
-   "st_sales": 1,
-   "st_sales_pct": 3,
-   "forecast_real": 185252.5,
-   "forecast_pct": 36.3
+   "st_pct": 109,
+   "st_sales": 4,
+   "st_sales_pct": 4,
+   "forecast_real": 242339.5,
+   "forecast_pct": 47.5
   },
   {
    "name": "СМ",
@@ -152,18 +152,18 @@ window.DASH_DATA = {
    "clients": 252,
    "pt_clients": 0,
    "studio": 0,
-   "real": 70102.5,
+   "real": 69812.5,
    "real_plan": 100000,
    "real_pct": 70,
    "prev": 65515.0,
-   "delta_pct": 7.0,
+   "delta_pct": 6.6,
    "st": 226,
    "st_plan": 240,
    "st_pct": 94,
-   "st_sales": 22,
+   "st_sales": 23,
    "st_sales_pct": 10,
-   "forecast_real": 70102.5,
-   "forecast_pct": 70.1
+   "forecast_real": 69812.5,
+   "forecast_pct": 69.8
   }
  ],
  "trainers": {
@@ -171,8 +171,8 @@ window.DASH_DATA = {
    {
     "name": "Мифтахутдинова Ф. Э.",
     "st": 22,
-    "sales": 4,
-    "sales_pct": 18
+    "sales": 3,
+    "sales_pct": 14
    },
    {
     "name": "Ахиялтдинов И. Р.",
@@ -513,6 +513,18 @@ window.DASH_DATA = {
   ],
   "Массаж": [
    {
+    "name": "Зарытова Г. Р.",
+    "st": 34,
+    "sales": 2,
+    "sales_pct": 6
+   },
+   {
+    "name": "Рагульковский М. М.",
+    "st": 33,
+    "sales": 1,
+    "sales_pct": 3
+   },
+   {
     "name": "Гасимов Р. Р.",
     "st": 14,
     "sales": 1,
@@ -526,7 +538,7 @@ window.DASH_DATA = {
    },
    {
     "name": "Лотарев В. Р.",
-    "st": 6,
+    "st": 7,
     "sales": 0,
     "sales_pct": 0
    }
@@ -535,8 +547,8 @@ window.DASH_DATA = {
    {
     "name": "Мир-Камилова Э. Н.",
     "st": 56,
-    "sales": 3,
-    "sales_pct": 5
+    "sales": 4,
+    "sales_pct": 7
    },
    {
     "name": "Мулюкова Э. Э.",
@@ -563,7 +575,7 @@ window.DASH_DATA = {
     "sales_pct": 18
    },
    {
-    "name": "Сабитова Н. Х.",
+    "name": "Хамидуллина Н. Х.",
     "st": 9,
     "sales": 3,
     "sales_pct": 33
