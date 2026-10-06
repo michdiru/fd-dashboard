@@ -94,7 +94,7 @@
   .blob.b3{width:480px;height:480px;bottom:-200px;left:32%;background:var(--teal);}
 
   /* фиксированный макет 1600x900, масштабируется скриптом под окно */
-  .stage-wrap{position:relative;z-index:1;width:100vw;height:100vh;overflow:hidden;}
+  .stage-wrap{position:relative;z-index:1;width:100%;height:100vh;overflow-x:hidden;overflow-y:auto;}
   .stage{width:1600px;height:900px;padding:26px 34px 20px;transform-origin:top left;display:flex;flex-direction:column;}
 
   .masthead{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;flex:0 0 auto;}
@@ -471,10 +471,11 @@
     /* масштабирование под окно */
     function fit(){
       var st = document.getElementById('stage');
-      if(window.innerWidth < 900){ st.style.transform=''; return; }
-      var s = Math.min(window.innerWidth/1600, window.innerHeight/900);
+      if(window.innerWidth < 900){ st.style.transform=''; st.style.marginLeft=''; st.style.marginTop=''; return; }
+      var availableWidth = st.parentElement.clientWidth;
+      var s = Math.min(availableWidth/1600, window.innerHeight/900);
       st.style.transform = 'scale('+s+')';
-      st.style.marginLeft = Math.max(0,(window.innerWidth-1600*s)/2)+'px';
+      st.style.marginLeft = Math.max(0,(availableWidth-1600*s)/2)+'px';
       st.style.marginTop  = Math.max(0,(window.innerHeight-900*s)/2)+'px';
     }
     fit();
