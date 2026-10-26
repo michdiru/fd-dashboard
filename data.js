@@ -4,7 +4,7 @@ window.DASH_DATA = {
   "through": "25.10.2026",
   "available": true
  },
- "generated_at": "26.10.2026 11:35",
+ "generated_at": "26.10.2026 14:22",
  "period": {
   "from": "01.10.2026",
   "to": "26.10.2026"
@@ -14,61 +14,61 @@ window.DASH_DATA = {
   "to": "26.10.2025"
  },
  "totals": {
-  "pt": 1528,
-  "clients": 1015,
-  "pt_clients": 449,
-  "studio": 1026,
-  "real": 4058255.1,
+  "pt": 1552,
+  "clients": 1038,
+  "pt_clients": 452,
+  "studio": 1034,
+  "real": 4138062.1,
   "real_plan": 5540000,
-  "real_pct": 73,
+  "real_pct": 75,
   "prev": 4174760.17,
-  "delta_pct": -2.8,
-  "st": 551,
+  "delta_pct": -0.9,
+  "st": 593,
   "st_plan": 752,
-  "st_pct": 73,
-  "st_sales": 102,
-  "st_sales_pct": 19,
-  "forecast_real": 5117756.19,
-  "forecast_pct": 92.4
+  "st_pct": 79,
+  "st_sales": 103,
+  "st_sales_pct": 17,
+  "forecast_real": 5127262.02,
+  "forecast_pct": 92.5
  },
  "departments": [
   {
    "name": "ТЗ",
-   "pt": 1235,
-   "clients": 470,
-   "pt_clients": 348,
-   "studio": 346,
-   "real": 2496304.75,
+   "pt": 1256,
+   "clients": 473,
+   "pt_clients": 351,
+   "studio": 348,
+   "real": 2532079.25,
    "real_plan": 2850000,
-   "real_pct": 88,
+   "real_pct": 89,
    "prev": 2181085.42,
-   "delta_pct": 14.5,
-   "st": 176,
+   "delta_pct": 16.1,
+   "st": 177,
    "st_plan": 220,
    "st_pct": 80,
    "st_sales": 47,
    "st_sales_pct": 27,
-   "forecast_real": 3126986.25,
-   "forecast_pct": 109.7
+   "forecast_real": 3133782.71,
+   "forecast_pct": 110.0
   },
   {
    "name": "ГП",
-   "pt": 225,
-   "clients": 238,
+   "pt": 228,
+   "clients": 239,
    "pt_clients": 95,
-   "studio": 237,
-   "real": 574900.75,
+   "studio": 239,
+   "real": 582048.25,
    "real_plan": 1250000,
-   "real_pct": 46,
+   "real_pct": 47,
    "prev": 1052124.5,
-   "delta_pct": -45.4,
-   "st": 74,
+   "delta_pct": -44.7,
+   "st": 76,
    "st_plan": 105,
-   "st_pct": 70,
+   "st_pct": 72,
    "st_sales": 14,
-   "st_sales_pct": 19,
-   "forecast_real": 724808.17,
-   "forecast_pct": 58.0
+   "st_sales_pct": 18,
+   "forecast_real": 727517.54,
+   "forecast_pct": 58.2
   },
   {
    "name": "БК",
@@ -94,12 +94,12 @@ window.DASH_DATA = {
    "pt": 29,
    "clients": 108,
    "pt_clients": 12,
-   "studio": 350,
-   "real": 310579.6,
+   "studio": 354,
+   "real": 312581.6,
    "real_plan": 280000,
-   "real_pct": 111,
+   "real_pct": 112,
    "prev": 225326.5,
-   "delta_pct": 37.8,
+   "delta_pct": 38.7,
    "st": 2,
    "st_plan": 12,
    "st_pct": 17,
@@ -114,11 +114,11 @@ window.DASH_DATA = {
    "clients": 28,
    "pt_clients": 0,
    "studio": 0,
-   "real": 158330.0,
+   "real": 158880.0,
    "real_plan": 210000,
-   "real_pct": 75,
+   "real_pct": 76,
    "prev": 141200.0,
-   "delta_pct": 12.1,
+   "delta_pct": 12.5,
    "st": null,
    "st_plan": null,
    "st_pct": null,
@@ -130,37 +130,37 @@ window.DASH_DATA = {
   {
    "name": "Массаж",
    "pt": 0,
-   "clients": 128,
+   "clients": 169,
    "pt_clients": 0,
    "studio": 0,
-   "real": 329342.5,
+   "real": 362515.5,
    "real_plan": 570000,
-   "real_pct": 58,
+   "real_pct": 64,
    "prev": 414171.25,
-   "delta_pct": -20.5,
-   "st": 69,
+   "delta_pct": -12.5,
+   "st": 104,
    "st_plan": 90,
-   "st_pct": 77,
+   "st_pct": 116,
    "st_sales": 9,
-   "st_sales_pct": 13,
+   "st_sales_pct": 9,
    "forecast_real": 422569.38,
    "forecast_pct": 74.1
   },
   {
    "name": "СМ",
    "pt": 0,
-   "clients": 230,
+   "clients": 234,
    "pt_clients": 0,
    "studio": 0,
-   "real": 73667.5,
+   "real": 74827.5,
    "real_plan": 100000,
-   "real_pct": 74,
+   "real_pct": 75,
    "prev": 52820.0,
-   "delta_pct": 39.5,
-   "st": 214,
+   "delta_pct": 41.7,
+   "st": 218,
    "st_plan": 285,
-   "st_pct": 75,
-   "st_sales": 28,
+   "st_pct": 76,
+   "st_sales": 29,
    "st_sales_pct": 13,
    "forecast_real": 93727.92,
    "forecast_pct": 93.7
@@ -193,16 +193,16 @@ window.DASH_DATA = {
     "sales_pct": 20
    },
    {
+    "name": "Камалетдинова Ю. В.",
+    "st": 14,
+    "sales": 5,
+    "sales_pct": 36
+   },
+   {
     "name": "Гафуров А. А.",
     "st": 14,
     "sales": 0,
     "sales_pct": 0
-   },
-   {
-    "name": "Камалетдинова Ю. В.",
-    "st": 13,
-    "sales": 5,
-    "sales_pct": 38
    },
    {
     "name": "Герасимов В. В.",
@@ -340,7 +340,7 @@ window.DASH_DATA = {
    },
    {
     "name": "Гильманова Г. Ф.",
-    "st": 7,
+    "st": 9,
     "sales": 0,
     "sales_pct": 0
    },
@@ -513,6 +513,12 @@ window.DASH_DATA = {
     "sales_pct": 18
    },
    {
+    "name": "Рагульковский М. М.",
+    "st": 30,
+    "sales": 0,
+    "sales_pct": 0
+   },
+   {
     "name": "Зарытова Г. Р.",
     "st": 24,
     "sales": 2,
@@ -520,15 +526,15 @@ window.DASH_DATA = {
    },
    {
     "name": "Лотарев В. Р.",
-    "st": 11,
+    "st": 14,
     "sales": 0,
     "sales_pct": 0
    },
    {
     "name": "Гильметдинова Г. Р.",
-    "st": 1,
+    "st": 3,
     "sales": 1,
-    "sales_pct": 100
+    "sales_pct": 33
    }
   ],
   "СМ": [
@@ -540,9 +546,9 @@ window.DASH_DATA = {
    },
    {
     "name": "Мир-Камилова Э. Н.",
-    "st": 43,
-    "sales": 2,
-    "sales_pct": 5
+    "st": 47,
+    "sales": 3,
+    "sales_pct": 6
    },
    {
     "name": "Валишина А. Д.",
