@@ -215,6 +215,7 @@ def main(export_dir, report_month=None):
 
     trainer_pt = defaultdict(lambda: defaultdict(int))
     trainer_studio = defaultdict(lambda: defaultdict(float))
+    massage_hours = defaultdict(float)
     txns = []  # (dept, dt, summa, is_pt, client, studio_qty)
     for key, n in global_cnt.items():
         section, _res, fio, _price, _qty, summa, name, datevalue = key
@@ -225,7 +226,14 @@ def main(export_dir, report_month=None):
         dep = canon_section(section)
         if dep is None:
             continue
-        is_pt = "персональн" in name.lower()
+        is_pt = "персональн" in name.lower() and "старт" not in name.lower()
+        if dep == "СМ":
+            is_pt = num(summa) > 0
+        if dep == "Массаж" and "массаж" in name.lower() and "старт" not in name.lower():
+            duration = re.search(r"\b(30|60|90|120)\s*мин", name, re.IGNORECASE)
+            if not duration:
+                sys.exit(f"Не указана длительность массажа: {name}")
+            massage_hours[title_name(_res)] += int(duration.group(1)) / 60 * num(_qty) * n
         if is_pt:
             trainer_pt[dep][title_name(_res)] += n
         is_studio = bool(re.search(r"секц|студи", name, re.IGNORECASE))
@@ -352,11 +360,25 @@ def main(export_dir, report_month=None):
     for dep, studio_counts in trainer_studio.items():
         for name in studio_counts:
             trainers[dep].setdefault(name, [0, 0])
+    for name in massage_hours:
+        trainers['Массаж'].setdefault(name, [0, 0])
+    for department in departments:
+        if department['name'] == 'Массаж':
+            department['massage_hours'] = round(sum(massage_hours.values()), 2)
+
+    # Group GP specialists under GP only when they have no ST in TZ.
+    # Financial department totals remain tied to the original service section.
+    for name in list(trainers['ТЗ']):
+        if not trainers['ТЗ'][name][0] and name in trainers['ГП']:
+            trainer_pt['ГП'][name] += trainer_pt['ТЗ'].pop(name, 0)
+            trainer_studio['ГП'][name] += trainer_studio['ТЗ'].pop(name, 0)
+            del trainers['ТЗ'][name]
 
     trainer_panels = {
         dep: sorted(
             ({"name": n, "st": v[0], "sales": v[1], "pt": trainer_pt[dep].get(n, 0),
               "studio": round(trainer_studio[dep].get(n, 0), 2),
+              **({"massage_hours": round(massage_hours.get(n, 0), 2)} if dep == 'Массаж' else {}),
               "sales_pct": conv_pct(v[0], v[1])} for n, v in trs.items()),
             key=lambda x: (-x["st"], -(x["sales_pct"] or 0), -x["pt"] if not x["st"] else 0, x["name"]),
         )

@@ -479,7 +479,7 @@
           '<div class="rank-name" title="'+esc(tr.name)+'">'+esc(tr.name)+'</div>'+
           '<div class="rank-val num">'+tr.st+'</div>'+
           '<div class="rank-sales num'+(salesPct>0?'':' zero')+'" title="'+esc(salesTitle)+'">'+salesLabel+'</div>'+
-          '<div class="rank-val num" title="Проведённые персональные тренировки">'+(tr.pt==null?'—':tr.pt)+'</div>'+
+          '<div class="rank-val num" title="'+(dep==='Массаж'?'Часы массажа без стартовых':dep==='СМ'?'Количество платных услуг':'Проведённые персональные тренировки')+'">'+(dep==='Массаж'?(tr.massage_hours==null?'—':fmtInt(tr.massage_hours)):(tr.pt==null?'—':tr.pt))+'</div>'+
           '<div class="rank-val num" title="Секции и студии: сумма количества оказанных услуг">'+(tr.studio==null?'—':fmtInt(tr.studio))+'</div>'+
         '</div>';
       }).join('');
@@ -492,7 +492,7 @@
       return '<div class="card lb-panel">'+
         '<div class="lb-panel-title"><span class="sw" style="background:'+col+'"></span>'+esc(dep)+
           '<span class="cnt num">'+(d&&d.st!=null?d.st+' СТ':'')+salesInfo+(d&&d.st_pct!=null?' · '+d.st_pct+'% плана':'')+'</span></div>'+
-        '<div class="rank-hdr"><span></span><span style="text-align:left">Тренер</span><span>СТ</span><span>прод., %</span><span>ПТ</span><span title="Секции и студии">Студии</span></div>'+
+        '<div class="rank-hdr"><span></span><span style="text-align:left">Тренер</span><span>СТ</span><span>прод., %</span><span>'+(dep==='Массаж'?'Часы':'ПТ')+'</span><span title="Секции и студии">Студии</span></div>'+
         '<div class="rank-list">'+rowsH+'</div>'+
       '</div>';
     }
