@@ -4,7 +4,7 @@ window.DASH_DATA = {
   "through": "26.10.2026",
   "available": true
  },
- "generated_at": "27.10.2026 12:15",
+ "generated_at": "27.10.2026 12:18",
  "period": {
   "from": "01.10.2026",
   "to": "27.10.2026"
@@ -172,156 +172,182 @@ window.DASH_DATA = {
     "name": "Мифтахутдинова Ф. Э.",
     "st": 19,
     "sales": 3,
+    "pt": 45,
     "sales_pct": 16
    },
    {
     "name": "Айгильдина А. Е.",
     "st": 18,
     "sales": 7,
+    "pt": 27,
     "sales_pct": 39
    },
    {
     "name": "Ахиялтдинов И. Р.",
     "st": 18,
     "sales": 1,
+    "pt": 64,
     "sales_pct": 6
    },
    {
     "name": "Камалетдинова Ю. В.",
     "st": 16,
     "sales": 5,
+    "pt": 48,
     "sales_pct": 31
    },
    {
     "name": "Чичканова И. С.",
     "st": 15,
     "sales": 3,
+    "pt": 32,
     "sales_pct": 20
    },
    {
     "name": "Гафуров А. А.",
     "st": 14,
     "sales": 0,
+    "pt": 8,
     "sales_pct": 0
    },
    {
     "name": "Герасимов В. В.",
     "st": 12,
     "sales": 3,
+    "pt": 100,
     "sales_pct": 25
    },
    {
     "name": "Донгузов Р. А.",
     "st": 9,
     "sales": 8,
+    "pt": 91,
     "sales_pct": 89
    },
    {
     "name": "Миндиярова Д. Х.",
     "st": 8,
     "sales": 2,
+    "pt": 35,
     "sales_pct": 25
    },
    {
     "name": "Салихов Т. С.",
     "st": 6,
     "sales": 1,
+    "pt": 57,
     "sales_pct": 17
    },
    {
     "name": "Сафутдинова А. А.",
     "st": 6,
     "sales": 1,
+    "pt": 11,
     "sales_pct": 17
    },
    {
     "name": "Пономарева Е. А.",
     "st": 5,
     "sales": 3,
+    "pt": 66,
     "sales_pct": 60
    },
    {
     "name": "Лапшина Н. О.",
     "st": 5,
     "sales": 2,
+    "pt": 79,
     "sales_pct": 40
    },
    {
     "name": "Зеркин А. М.",
     "st": 4,
     "sales": 0,
+    "pt": 13,
     "sales_pct": 0
    },
    {
     "name": "Зорина М. П.",
     "st": 4,
     "sales": 0,
+    "pt": 34,
     "sales_pct": 0
    },
    {
     "name": "Иванов В. Ю.",
     "st": 3,
     "sales": 3,
+    "pt": 45,
     "sales_pct": 100
    },
    {
     "name": "Зайнуллина Д. И.",
     "st": 3,
     "sales": 2,
+    "pt": 49,
     "sales_pct": 67
    },
    {
     "name": "Нечаева Е. В.",
     "st": 3,
     "sales": 2,
+    "pt": 110,
     "sales_pct": 67
    },
    {
     "name": "Нагорная А. Е.",
     "st": 3,
     "sales": 1,
+    "pt": 24,
     "sales_pct": 33
    },
    {
     "name": "Нуртдинов И. Р.",
     "st": 3,
     "sales": 0,
+    "pt": 4,
     "sales_pct": 0
    },
    {
     "name": "Людке Ю. Г.",
     "st": 2,
     "sales": 2,
+    "pt": 47,
     "sales_pct": 100
    },
    {
     "name": "Бикметова К. Э.",
     "st": 2,
     "sales": 0,
+    "pt": 22,
     "sales_pct": 0
    },
    {
     "name": "Исхакова Ю. С.",
     "st": 2,
     "sales": 0,
+    "pt": 80,
     "sales_pct": 0
    },
    {
     "name": "Баязитова Э. В.",
     "st": 1,
     "sales": 0,
+    "pt": 22,
     "sales_pct": 0
    },
    {
     "name": "Егорова Е. Д.",
     "st": 1,
     "sales": 0,
+    "pt": 84,
     "sales_pct": 0
    },
    {
     "name": "Кашапова Д. С.",
     "st": 1,
     "sales": 0,
+    "pt": 20,
     "sales_pct": 0
    }
   ],
@@ -330,132 +356,154 @@ window.DASH_DATA = {
     "name": "Гавриловская В. А.",
     "st": 10,
     "sales": 5,
+    "pt": 5,
     "sales_pct": 50
    },
    {
     "name": "Исангужина Э. Р.",
     "st": 10,
     "sales": 5,
+    "pt": 18,
     "sales_pct": 50
    },
    {
     "name": "Гильманова Г. Ф.",
     "st": 8,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    },
    {
     "name": "Меркулова С. В.",
     "st": 6,
     "sales": 1,
+    "pt": 0,
     "sales_pct": 17
    },
    {
     "name": "Гущина К. А.",
     "st": 5,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    },
    {
     "name": "Зорина М. П.",
     "st": 5,
     "sales": 0,
+    "pt": 9,
     "sales_pct": 0
    },
    {
     "name": "Куцакова Д. А.",
     "st": 5,
     "sales": 0,
+    "pt": 14,
     "sales_pct": 0
    },
    {
     "name": "Савельева А. А.",
     "st": 5,
     "sales": 0,
+    "pt": 23,
     "sales_pct": 0
    },
    {
     "name": "Лбова А. В.",
     "st": 4,
     "sales": 0,
+    "pt": 18,
     "sales_pct": 0
    },
    {
     "name": "Хасанова К. Р.",
     "st": 3,
     "sales": 0,
+    "pt": 3,
     "sales_pct": 0
    },
    {
     "name": "Спиридонова О. Ю.",
     "st": 2,
     "sales": 1,
+    "pt": 0,
     "sales_pct": 50
    },
    {
     "name": "Дмитриева Т. В.",
     "st": 2,
     "sales": 0,
+    "pt": 7,
     "sales_pct": 0
    },
    {
     "name": "Иванов В. Ю.",
     "st": 2,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    },
    {
     "name": "Колодина О. С.",
     "st": 2,
     "sales": 0,
+    "pt": 42,
     "sales_pct": 0
    },
    {
     "name": "Муратшина Л. К.",
     "st": 2,
     "sales": 0,
+    "pt": 10,
     "sales_pct": 0
    },
    {
     "name": "Баязитова Э. В.",
     "st": 1,
     "sales": 1,
+    "pt": 4,
     "sales_pct": 100
    },
    {
     "name": "Скиба А. С.",
     "st": 1,
     "sales": 1,
+    "pt": 29,
     "sales_pct": 100
    },
    {
     "name": "Ахметшина Р. Н.",
     "st": 1,
     "sales": 0,
+    "pt": 2,
     "sales_pct": 0
    },
    {
     "name": "Бакиев Л. Ф.",
     "st": 1,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    },
    {
     "name": "Маликова Л. Р.",
     "st": 1,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    },
    {
     "name": "Тазериянова К. П.",
     "st": 1,
     "sales": 0,
+    "pt": 3,
     "sales_pct": 0
    },
    {
     "name": "Хатыпов А. О.",
     "st": 1,
     "sales": 0,
+    "pt": 19,
     "sales_pct": 0
    }
   ],
@@ -464,36 +512,42 @@ window.DASH_DATA = {
     "name": "Исангулов И. А.",
     "st": 6,
     "sales": 0,
+    "pt": 6,
     "sales_pct": 0
    },
    {
     "name": "Акобян К. А.",
     "st": 3,
     "sales": 1,
+    "pt": 4,
     "sales_pct": 33
    },
    {
     "name": "Роев П. Г.",
     "st": 3,
     "sales": 1,
+    "pt": 29,
     "sales_pct": 33
    },
    {
     "name": "Нугуманов К. Р.",
     "st": 2,
     "sales": 1,
+    "pt": 0,
     "sales_pct": 50
    },
    {
     "name": "Габдуллин Я. И.",
     "st": 1,
     "sales": 1,
+    "pt": 0,
     "sales_pct": 100
    },
    {
     "name": "Горбунов Д. С.",
     "st": 1,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    }
   ],
@@ -502,12 +556,14 @@ window.DASH_DATA = {
     "name": "Бактыбаев В. Р.",
     "st": 1,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    },
    {
     "name": "Дементьева Ж. Г.",
     "st": 1,
     "sales": 0,
+    "pt": 5,
     "sales_pct": 0
    }
   ],
@@ -516,30 +572,35 @@ window.DASH_DATA = {
     "name": "Гасимов Р. Р.",
     "st": 35,
     "sales": 7,
+    "pt": 0,
     "sales_pct": 20
    },
    {
     "name": "Рагульковский М. М.",
     "st": 30,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    },
    {
     "name": "Зарытова Г. Р.",
     "st": 24,
     "sales": 2,
+    "pt": 0,
     "sales_pct": 8
    },
    {
     "name": "Лотарев В. Р.",
     "st": 14,
     "sales": 0,
+    "pt": 0,
     "sales_pct": 0
    },
    {
     "name": "Гильметдинова Г. Р.",
     "st": 3,
     "sales": 1,
+    "pt": 0,
     "sales_pct": 33
    }
   ],
@@ -548,30 +609,35 @@ window.DASH_DATA = {
     "name": "Ахметова Г. И.",
     "st": 70,
     "sales": 10,
+    "pt": 0,
     "sales_pct": 14
    },
    {
     "name": "Мир-Камилова Э. Н.",
     "st": 52,
     "sales": 5,
+    "pt": 0,
     "sales_pct": 10
    },
    {
     "name": "Валишина А. Д.",
     "st": 41,
     "sales": 7,
+    "pt": 0,
     "sales_pct": 17
    },
    {
     "name": "Ломакина А. В.",
     "st": 34,
     "sales": 5,
+    "pt": 0,
     "sales_pct": 15
    },
    {
     "name": "Каюмова А. А.",
     "st": 26,
     "sales": 4,
+    "pt": 0,
     "sales_pct": 15
    }
   ]
