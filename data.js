@@ -4,7 +4,7 @@ window.DASH_DATA = {
   "through": "26.10.2026",
   "available": true
  },
- "generated_at": "27.10.2026 12:18",
+ "generated_at": "27.10.2026 17:55",
  "period": {
   "from": "01.10.2026",
   "to": "27.10.2026"
@@ -349,6 +349,76 @@ window.DASH_DATA = {
     "sales": 0,
     "pt": 20,
     "sales_pct": 0
+   },
+   {
+    "name": "Рассказов С. А.",
+    "st": 0,
+    "sales": 0,
+    "pt": 74,
+    "sales_pct": null
+   },
+   {
+    "name": "Михляев Д. И.",
+    "st": 0,
+    "sales": 0,
+    "pt": 6,
+    "sales_pct": null
+   },
+   {
+    "name": "Гавриловская В. А.",
+    "st": 0,
+    "sales": 0,
+    "pt": 2,
+    "sales_pct": null
+   },
+   {
+    "name": "Лбова А. В.",
+    "st": 0,
+    "sales": 0,
+    "pt": 2,
+    "sales_pct": null
+   },
+   {
+    "name": "Гильманова Г. Ф.",
+    "st": 0,
+    "sales": 0,
+    "pt": 1,
+    "sales_pct": null
+   },
+   {
+    "name": "Дмитриева Т. В.",
+    "st": 0,
+    "sales": 0,
+    "pt": 1,
+    "sales_pct": null
+   },
+   {
+    "name": "Меркулова С. В.",
+    "st": 0,
+    "sales": 0,
+    "pt": 1,
+    "sales_pct": null
+   },
+   {
+    "name": "Муратшина Л. К.",
+    "st": 0,
+    "sales": 0,
+    "pt": 1,
+    "sales_pct": null
+   },
+   {
+    "name": "Скиба А. С.",
+    "st": 0,
+    "sales": 0,
+    "pt": 1,
+    "sales_pct": null
+   },
+   {
+    "name": "Хасанова К. Р.",
+    "st": 0,
+    "sales": 0,
+    "pt": 1,
+    "sales_pct": null
    }
   ],
   "ГП": [
@@ -505,6 +575,41 @@ window.DASH_DATA = {
     "sales": 0,
     "pt": 19,
     "sales_pct": 0
+   },
+   {
+    "name": "Кощеев Д. Г.",
+    "st": 0,
+    "sales": 0,
+    "pt": 17,
+    "sales_pct": null
+   },
+   {
+    "name": "Тест Т. Т.",
+    "st": 0,
+    "sales": 0,
+    "pt": 4,
+    "sales_pct": null
+   },
+   {
+    "name": "Хайретдинова Э. Э.",
+    "st": 0,
+    "sales": 0,
+    "pt": 4,
+    "sales_pct": null
+   },
+   {
+    "name": "Аманова Р. Р.",
+    "st": 0,
+    "sales": 0,
+    "pt": 3,
+    "sales_pct": null
+   },
+   {
+    "name": "Ахтямова Д. А.",
+    "st": 0,
+    "sales": 0,
+    "pt": 3,
+    "sales_pct": null
    }
   ],
   "БК": [
@@ -549,6 +654,13 @@ window.DASH_DATA = {
     "sales": 0,
     "pt": 0,
     "sales_pct": 0
+   },
+   {
+    "name": "Чертов А. А.",
+    "st": 0,
+    "sales": 0,
+    "pt": 1,
+    "sales_pct": null
    }
   ],
   "ДЦ": [
@@ -565,6 +677,34 @@ window.DASH_DATA = {
     "sales": 0,
     "pt": 5,
     "sales_pct": 0
+   },
+   {
+    "name": "Чухрова Е. И.",
+    "st": 0,
+    "sales": 0,
+    "pt": 10,
+    "sales_pct": null
+   },
+   {
+    "name": "Трапезникова Д. М.",
+    "st": 0,
+    "sales": 0,
+    "pt": 9,
+    "sales_pct": null
+   },
+   {
+    "name": "Янгирова В. О.",
+    "st": 0,
+    "sales": 0,
+    "pt": 4,
+    "sales_pct": null
+   },
+   {
+    "name": "Самигуллина М. М.",
+    "st": 0,
+    "sales": 0,
+    "pt": 3,
+    "sales_pct": null
    }
   ],
   "Массаж": [

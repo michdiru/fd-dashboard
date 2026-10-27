@@ -342,11 +342,16 @@ def main(export_dir, report_month=None):
         "st_sales_pct": conv_pct(sum(st.values()), sum(st_sales.values())),
     }
 
+    # Include trainers who conducted PT even when the ST export has no row for them.
+    for dep, pt_counts in trainer_pt.items():
+        for name in pt_counts:
+            trainers[dep].setdefault(name, [0, 0])
+
     trainer_panels = {
         dep: sorted(
             ({"name": n, "st": v[0], "sales": v[1], "pt": trainer_pt[dep].get(n, 0),
               "sales_pct": conv_pct(v[0], v[1])} for n, v in trs.items()),
-            key=lambda x: (-x["st"], -(x["sales_pct"] or 0), x["name"]),
+            key=lambda x: (-x["st"], -(x["sales_pct"] or 0), -x["pt"] if not x["st"] else 0, x["name"]),
         )
         for dep, trs in trainers.items()
     }
