@@ -4,7 +4,7 @@ window.DASH_DATA = {
   "through": "26.10.2026",
   "available": true
  },
- "generated_at": "27.10.2026 17:55",
+ "generated_at": "27.10.2026 18:01",
  "period": {
   "from": "01.10.2026",
   "to": "27.10.2026"
@@ -173,6 +173,7 @@ window.DASH_DATA = {
     "st": 19,
     "sales": 3,
     "pt": 45,
+    "studio": 0,
     "sales_pct": 16
    },
    {
@@ -180,6 +181,7 @@ window.DASH_DATA = {
     "st": 18,
     "sales": 7,
     "pt": 27,
+    "studio": 0,
     "sales_pct": 39
    },
    {
@@ -187,6 +189,7 @@ window.DASH_DATA = {
     "st": 18,
     "sales": 1,
     "pt": 64,
+    "studio": 0,
     "sales_pct": 6
    },
    {
@@ -194,6 +197,7 @@ window.DASH_DATA = {
     "st": 16,
     "sales": 5,
     "pt": 48,
+    "studio": 0,
     "sales_pct": 31
    },
    {
@@ -201,6 +205,7 @@ window.DASH_DATA = {
     "st": 15,
     "sales": 3,
     "pt": 32,
+    "studio": 0,
     "sales_pct": 20
    },
    {
@@ -208,6 +213,7 @@ window.DASH_DATA = {
     "st": 14,
     "sales": 0,
     "pt": 8,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -215,6 +221,7 @@ window.DASH_DATA = {
     "st": 12,
     "sales": 3,
     "pt": 100,
+    "studio": 0,
     "sales_pct": 25
    },
    {
@@ -222,6 +229,7 @@ window.DASH_DATA = {
     "st": 9,
     "sales": 8,
     "pt": 91,
+    "studio": 0,
     "sales_pct": 89
    },
    {
@@ -229,6 +237,7 @@ window.DASH_DATA = {
     "st": 8,
     "sales": 2,
     "pt": 35,
+    "studio": 0,
     "sales_pct": 25
    },
    {
@@ -236,6 +245,7 @@ window.DASH_DATA = {
     "st": 6,
     "sales": 1,
     "pt": 57,
+    "studio": 73.0,
     "sales_pct": 17
    },
    {
@@ -243,6 +253,7 @@ window.DASH_DATA = {
     "st": 6,
     "sales": 1,
     "pt": 11,
+    "studio": 0,
     "sales_pct": 17
    },
    {
@@ -250,6 +261,7 @@ window.DASH_DATA = {
     "st": 5,
     "sales": 3,
     "pt": 66,
+    "studio": 0,
     "sales_pct": 60
    },
    {
@@ -257,6 +269,7 @@ window.DASH_DATA = {
     "st": 5,
     "sales": 2,
     "pt": 79,
+    "studio": 0,
     "sales_pct": 40
    },
    {
@@ -264,6 +277,7 @@ window.DASH_DATA = {
     "st": 4,
     "sales": 0,
     "pt": 13,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -271,6 +285,7 @@ window.DASH_DATA = {
     "st": 4,
     "sales": 0,
     "pt": 34,
+    "studio": 4.0,
     "sales_pct": 0
    },
    {
@@ -278,6 +293,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 3,
     "pt": 45,
+    "studio": 0,
     "sales_pct": 100
    },
    {
@@ -285,6 +301,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 2,
     "pt": 49,
+    "studio": 0,
     "sales_pct": 67
    },
    {
@@ -292,6 +309,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 2,
     "pt": 110,
+    "studio": 0,
     "sales_pct": 67
    },
    {
@@ -299,6 +317,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 1,
     "pt": 24,
+    "studio": 0,
     "sales_pct": 33
    },
    {
@@ -306,6 +325,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 0,
     "pt": 4,
+    "studio": 289.0,
     "sales_pct": 0
    },
    {
@@ -313,6 +333,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 2,
     "pt": 47,
+    "studio": 0,
     "sales_pct": 100
    },
    {
@@ -320,6 +341,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 0,
     "pt": 22,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -327,6 +349,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 0,
     "pt": 80,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -334,6 +357,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 22,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -341,6 +365,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 84,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -348,6 +373,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 20,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -355,6 +381,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 74,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -362,6 +389,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 6,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -369,6 +397,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 2,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -376,6 +405,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 2,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -383,6 +413,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 1,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -390,6 +421,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 1,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -397,6 +429,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 1,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -404,6 +437,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 1,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -411,6 +445,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 1,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -418,6 +453,15 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 1,
+    "studio": 0,
+    "sales_pct": null
+   },
+   {
+    "name": "Колодина О. С.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 3.0,
     "sales_pct": null
    }
   ],
@@ -427,6 +471,7 @@ window.DASH_DATA = {
     "st": 10,
     "sales": 5,
     "pt": 5,
+    "studio": 40.0,
     "sales_pct": 50
    },
    {
@@ -434,6 +479,7 @@ window.DASH_DATA = {
     "st": 10,
     "sales": 5,
     "pt": 18,
+    "studio": 0,
     "sales_pct": 50
    },
    {
@@ -441,6 +487,7 @@ window.DASH_DATA = {
     "st": 8,
     "sales": 0,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -448,6 +495,7 @@ window.DASH_DATA = {
     "st": 6,
     "sales": 1,
     "pt": 0,
+    "studio": 31.0,
     "sales_pct": 17
    },
    {
@@ -455,6 +503,7 @@ window.DASH_DATA = {
     "st": 5,
     "sales": 0,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -462,6 +511,7 @@ window.DASH_DATA = {
     "st": 5,
     "sales": 0,
     "pt": 9,
+    "studio": 11.0,
     "sales_pct": 0
    },
    {
@@ -469,6 +519,7 @@ window.DASH_DATA = {
     "st": 5,
     "sales": 0,
     "pt": 14,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -476,6 +527,7 @@ window.DASH_DATA = {
     "st": 5,
     "sales": 0,
     "pt": 23,
+    "studio": 14.0,
     "sales_pct": 0
    },
    {
@@ -483,6 +535,7 @@ window.DASH_DATA = {
     "st": 4,
     "sales": 0,
     "pt": 18,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -490,6 +543,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 0,
     "pt": 3,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -497,6 +551,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 1,
     "pt": 0,
+    "studio": 5.0,
     "sales_pct": 50
    },
    {
@@ -504,6 +559,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 0,
     "pt": 7,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -511,6 +567,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 0,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -518,6 +575,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 0,
     "pt": 42,
+    "studio": 60.0,
     "sales_pct": 0
    },
    {
@@ -525,6 +583,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 0,
     "pt": 10,
+    "studio": 4.0,
     "sales_pct": 0
    },
    {
@@ -532,6 +591,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 1,
     "pt": 4,
+    "studio": 0,
     "sales_pct": 100
    },
    {
@@ -539,6 +599,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 1,
     "pt": 29,
+    "studio": 0,
     "sales_pct": 100
    },
    {
@@ -546,6 +607,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 2,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -553,6 +615,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -560,6 +623,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 0,
+    "studio": 13.0,
     "sales_pct": 0
    },
    {
@@ -567,6 +631,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 3,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -574,6 +639,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 19,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -581,6 +647,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 17,
+    "studio": 6.0,
     "sales_pct": null
    },
    {
@@ -588,6 +655,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 4,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -595,6 +663,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 4,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -602,6 +671,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 3,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -609,6 +679,23 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 3,
+    "studio": 41.0,
+    "sales_pct": null
+   },
+   {
+    "name": "Михайлов А. Ю.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 17.0,
+    "sales_pct": null
+   },
+   {
+    "name": "Носкова А. В.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 5.0,
     "sales_pct": null
    }
   ],
@@ -618,6 +705,7 @@ window.DASH_DATA = {
     "st": 6,
     "sales": 0,
     "pt": 6,
+    "studio": 2.0,
     "sales_pct": 0
    },
    {
@@ -625,6 +713,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 1,
     "pt": 4,
+    "studio": 0,
     "sales_pct": 33
    },
    {
@@ -632,6 +721,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 1,
     "pt": 29,
+    "studio": 2.0,
     "sales_pct": 33
    },
    {
@@ -639,6 +729,7 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 1,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 50
    },
    {
@@ -646,6 +737,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 1,
     "pt": 0,
+    "studio": 12.0,
     "sales_pct": 100
    },
    {
@@ -653,6 +745,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -660,6 +753,15 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 1,
+    "studio": 27.0,
+    "sales_pct": null
+   },
+   {
+    "name": "Арсланов Д. Б.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 56.0,
     "sales_pct": null
    }
   ],
@@ -669,6 +771,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 0,
+    "studio": 71.0,
     "sales_pct": 0
    },
    {
@@ -676,6 +779,7 @@ window.DASH_DATA = {
     "st": 1,
     "sales": 0,
     "pt": 5,
+    "studio": 10.0,
     "sales_pct": 0
    },
    {
@@ -683,6 +787,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 10,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -690,6 +795,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 9,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -697,6 +803,7 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 4,
+    "studio": 0,
     "sales_pct": null
    },
    {
@@ -704,6 +811,55 @@ window.DASH_DATA = {
     "st": 0,
     "sales": 0,
     "pt": 3,
+    "studio": 0,
+    "sales_pct": null
+   },
+   {
+    "name": "Зайнуллина И. Р.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 17.0,
+    "sales_pct": null
+   },
+   {
+    "name": "Зеркин А. М.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 79.0,
+    "sales_pct": null
+   },
+   {
+    "name": "Каримова О. В.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 16.0,
+    "sales_pct": null
+   },
+   {
+    "name": "Нуртдинов И. Р.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 114.0,
+    "sales_pct": null
+   },
+   {
+    "name": "Роев П. Г.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 17.0,
+    "sales_pct": null
+   },
+   {
+    "name": "Тазериянова К. П.",
+    "st": 0,
+    "sales": 0,
+    "pt": 0,
+    "studio": 39.0,
     "sales_pct": null
    }
   ],
@@ -713,6 +869,7 @@ window.DASH_DATA = {
     "st": 35,
     "sales": 7,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 20
    },
    {
@@ -720,6 +877,7 @@ window.DASH_DATA = {
     "st": 30,
     "sales": 0,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -727,6 +885,7 @@ window.DASH_DATA = {
     "st": 24,
     "sales": 2,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 8
    },
    {
@@ -734,6 +893,7 @@ window.DASH_DATA = {
     "st": 14,
     "sales": 0,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 0
    },
    {
@@ -741,6 +901,7 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 1,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 33
    }
   ],
@@ -750,6 +911,7 @@ window.DASH_DATA = {
     "st": 70,
     "sales": 10,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 14
    },
    {
@@ -757,6 +919,7 @@ window.DASH_DATA = {
     "st": 52,
     "sales": 5,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 10
    },
    {
@@ -764,6 +927,7 @@ window.DASH_DATA = {
     "st": 41,
     "sales": 7,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 17
    },
    {
@@ -771,6 +935,7 @@ window.DASH_DATA = {
     "st": 34,
     "sales": 5,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 15
    },
    {
@@ -778,6 +943,7 @@ window.DASH_DATA = {
     "st": 26,
     "sales": 4,
     "pt": 0,
+    "studio": 0,
     "sales_pct": 15
    }
   ]

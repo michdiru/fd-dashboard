@@ -214,6 +214,7 @@ def main(export_dir, report_month=None):
             global_cnt[key] = max(global_cnt[key], n)
 
     trainer_pt = defaultdict(lambda: defaultdict(int))
+    trainer_studio = defaultdict(lambda: defaultdict(float))
     txns = []  # (dept, dt, summa, is_pt, client, studio_qty)
     for key, n in global_cnt.items():
         section, _res, fio, _price, _qty, summa, name, datevalue = key
@@ -230,6 +231,8 @@ def main(export_dir, report_month=None):
         is_studio = bool(re.search(r"секц|студи", name, re.IGNORECASE))
         client = client_key(fio)
         studio_qty = num(_qty) if is_studio else 0
+        if is_studio:
+            trainer_studio[dep][title_name(_res)] += studio_qty * n
         for _ in range(n):
             txns.append((dep, dt, num(summa), is_pt, client, studio_qty))
 
@@ -346,10 +349,14 @@ def main(export_dir, report_month=None):
     for dep, pt_counts in trainer_pt.items():
         for name in pt_counts:
             trainers[dep].setdefault(name, [0, 0])
+    for dep, studio_counts in trainer_studio.items():
+        for name in studio_counts:
+            trainers[dep].setdefault(name, [0, 0])
 
     trainer_panels = {
         dep: sorted(
             ({"name": n, "st": v[0], "sales": v[1], "pt": trainer_pt[dep].get(n, 0),
+              "studio": round(trainer_studio[dep].get(n, 0), 2),
               "sales_pct": conv_pct(v[0], v[1])} for n, v in trs.items()),
             key=lambda x: (-x["st"], -(x["sales_pct"] or 0), -x["pt"] if not x["st"] else 0, x["name"]),
         )
