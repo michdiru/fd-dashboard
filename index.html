@@ -239,6 +239,25 @@
   [data-theme="karma"] .lb-panel{background:#171a17;color:#fafbf5;--text:#fafbf5;--text-2:#d9ddd0;--text-3:#aab29e;--track:#353b32;--pill-good-fg:#d2df96;}
   [data-theme="karma"] .rank-fill{background:#d2df96 !important;}
   [data-theme="karma"] .rank-row.medal .rank-num{color:#e7b47a;}
+  body.dept-view .stage{width:100%;max-width:1100px;height:auto;min-height:100vh;margin:0 auto;padding:24px;transform:none;}
+  body.dept-view .masthead{flex-wrap:wrap;}
+  body.dept-view .title{white-space:normal;}
+  body.dept-view .col-l{display:none;}
+  body.dept-view .cols,body.dept-view .col-r{display:block;width:100%;}
+  body.dept-view .lb-head{flex-wrap:wrap;}
+  body.dept-view .lb-panel{padding:20px;}
+  body.dept-view .lb-panel-title{font-size:18px;margin-bottom:16px;}
+  body.dept-view .rank-row,body.dept-view .rank-hdr{grid-template-columns:24px minmax(100px,1fr) 54px 80px 60px 70px;gap:10px;}
+  body.dept-view .rank-row{font-size:16px;min-height:38px;}
+  body.dept-view .rank-hdr{font-size:11px;}
+  @media(max-width:600px){
+    body.dept-view .stage{padding:16px 10px;}
+    body.dept-view .title{font-size:21px;}
+    body.dept-view .lb-panel{padding:12px 8px;}
+    body.dept-view .rank-row,body.dept-view .rank-hdr{grid-template-columns:18px minmax(90px,1fr) 28px 44px 32px 43px;gap:4px;}
+    body.dept-view .rank-row{font-size:12px;}
+    body.dept-view .rank-hdr{font-size:8px;}
+  }
 </style>
 </head>
 <body>
@@ -348,6 +367,15 @@
       return label.charAt(0).toUpperCase()+label.slice(1)+' '+p[0];
     }
 
+    var deptLinks = {tz:'ТЗ',gp:'ГП',bk:'БК',dc:'ДЦ',sm:'СМ',massage:'Массаж'};
+    var deptCode = new URLSearchParams(window.location.search).get('dept');
+    var selectedDept = Object.prototype.hasOwnProperty.call(deptLinks, deptCode) ? deptLinks[deptCode] : null;
+    if(selectedDept){
+      document.body.classList.add('dept-view');
+      document.querySelector('.title').textContent = 'Рейтинг тренеров · '+selectedDept;
+      document.querySelector('.lb-sub').textContent = 'Проведённые СТ, продажи и занятия';
+      document.title = 'Рейтинг тренеров · '+selectedDept;
+    }
     var currentKey = monthKey(currentData);
     var requestedKey = new URLSearchParams(window.location.search).get('month');
     var D = requestedKey && archive[requestedKey] ? archive[requestedKey] : currentData;
@@ -372,7 +400,7 @@
       'Мероприятия ФД':'var(--teal)','Массаж':'var(--orange)','СМ':'var(--magenta)'
     };
     /* две стопки панелей; все тренеры, без сокращений */
-    var PANEL_COLS = [['ТЗ','ДЦ'], ['ГП','БК','СМ','Массаж']];
+    var PANEL_COLS = selectedDept ? [[selectedDept]] : [['ТЗ','ДЦ'], ['ГП','БК','СМ','Массаж']];
 
     function esc(s){ return String(s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
     function mln(v){ return (v/1e6).toFixed(2); }
@@ -503,7 +531,7 @@
     /* масштабирование под окно */
     function fit(){
       var st = document.getElementById('stage');
-      if(window.innerWidth < 900){ st.style.transform=''; st.style.marginLeft=''; st.style.marginTop=''; return; }
+      if(selectedDept || window.innerWidth < 900){ st.style.transform=''; st.style.marginLeft=''; st.style.marginTop=''; return; }
       var availableWidth = st.parentElement.clientWidth;
       var s = Math.min(availableWidth/1600, window.innerHeight/900);
       st.style.transform = 'scale('+s+')';
