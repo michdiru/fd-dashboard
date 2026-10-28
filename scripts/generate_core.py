@@ -236,7 +236,12 @@ def main(export_dir, report_month=None):
             massage_hours[title_name(_res)] += int(duration.group(1)) / 60 * num(_qty) * n
         if is_pt:
             trainer_pt[dep][title_name(_res)] += n
-        is_studio = bool(re.search(r"секц|студи", name, re.IGNORECASE))
+        is_studio = bool(re.search(r"секц|студи", name, re.IGNORECASE)) or (
+            dep == "ДЦ" and bool(re.search(
+                r"бразильск\w*\s+джиу[\s-]*джитсу|йог\w*\s+в\s+гамаках",
+                name, re.IGNORECASE,
+            ))
+        )
         client = client_key(fio)
         studio_qty = num(_qty) if is_studio else 0
         if is_studio:
