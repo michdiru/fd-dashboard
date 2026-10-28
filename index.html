@@ -424,6 +424,9 @@
       return '<tr>'+
         '<td class="dept"><span class="dept-dot" style="background:'+DEPT_COLOR[d.name]+'"></span>'+esc(d.name)+
           '<span class="dept-meta">секции/студии: '+fmtInt(d.studio||0)+'</span></td>'+
+        '<td class="num">'+fmtInt(d.clients||0)+'</td>'+
+        '<td class="num">'+(d.pt?fmtInt(d.pt):'<span class="muted">0</span>')+
+          '<span class="metric-sub">'+fmtInt(d.pt_clients||0)+' уник.</span></td>'+
         '<td class="num grp-sep">'+mln(d.real)+'</td>'+
         '<td>'+pill(d.real_pct)+'</td>'+
         '<td class="num">'+forecastCell(d)+'</td>'+
@@ -435,13 +438,15 @@
     }).join('');
     document.getElementById('deptTable').innerHTML =
       '<thead>'+
-        '<tr class="grp"><th class="dept-h"></th><th colspan="5" class="grp-sep">Реализация</th><th colspan="2" class="grp-sep">СТ</th></tr>'+
-        '<tr><th class="dept-h">Департамент</th>'+
+        '<tr class="grp"><th class="dept-h"></th><th>Клиенты</th><th>ПТ</th><th colspan="5" class="grp-sep">Реализация</th><th colspan="2" class="grp-sep">СТ</th></tr>'+
+        '<tr><th class="dept-h">Департамент</th><th>уник.</th><th>шт / уник.</th>'+
         '<th class="grp-sep">млн ₽</th><th>% плана</th><th title="Факт плюс прогноз оставшихся дней по средним соответствующих дней недели">Прогноз, млн ₽</th><th>Прошлый год</th><th>Δ</th>'+
         '<th class="grp-sep">Кол-во</th><th>% плана</th></tr>'+
       '</thead><tbody>'+rows+'</tbody>'+
       '<tfoot><tr>'+
         '<td class="dept">ФД — итого<span class="dept-meta">секции/студии: '+fmtInt(t.studio||0)+'</span></td>'+
+        '<td class="num">'+fmtInt(t.clients||0)+'</td>'+
+        '<td class="num">'+fmtInt(t.pt)+'<span class="metric-sub">'+fmtInt(t.pt_clients||0)+' уник.</span></td>'+
         '<td class="num grp-sep">'+mln(t.real)+'</td><td>'+pill(t.real_pct)+'</td>'+
         '<td class="num">'+forecastCell(t)+'</td>'+
         '<td class="num">'+mln(t.prev)+'</td><td>'+delta(t.delta_pct)+'</td>'+
