@@ -4,7 +4,7 @@ window.DASH_DATA = {
   "through": "27.10.2026",
   "available": true
  },
- "generated_at": "28.10.2026 17:31",
+ "generated_at": "28.10.2026 16:19",
  "period": {
   "from": "01.10.2026",
   "to": "28.10.2026"
@@ -14,42 +14,42 @@ window.DASH_DATA = {
   "to": "28.10.2025"
  },
  "totals": {
-  "pt": 1642,
-  "clients": 1056,
-  "pt_clients": 425,
-  "studio": 1209,
-  "real": 4504259.1,
+  "pt": 1719,
+  "clients": 1112,
+  "pt_clients": 460,
+  "studio": 1221,
+  "real": 4613251.1,
   "real_plan": 5540000,
-  "real_pct": 81,
+  "real_pct": 83,
   "prev": 4580622.75,
-  "delta_pct": -1.7,
-  "st": 677,
+  "delta_pct": 0.7,
+  "st": 674,
   "st_plan": 752,
   "st_pct": 90,
-  "st_sales": 118,
+  "st_sales": 117,
   "st_sales_pct": 17,
-  "forecast_real": 5011740.38,
-  "forecast_pct": 90.5
+  "forecast_real": 5130255.38,
+  "forecast_pct": 92.6
  },
  "departments": [
   {
    "name": "ТЗ",
-   "pt": 1237,
-   "clients": 422,
-   "pt_clients": 283,
-   "studio": 380,
-   "real": 2684185.5,
+   "pt": 1314,
+   "clients": 506,
+   "pt_clients": 318,
+   "studio": 392,
+   "real": 2792742.5,
    "real_plan": 2850000,
-   "real_pct": 94,
+   "real_pct": 98,
    "prev": 2416422.5,
-   "delta_pct": 11.1,
+   "delta_pct": 15.6,
    "st": 200,
    "st_plan": 220,
    "st_pct": 91,
    "st_sales": 51,
    "st_sales_pct": 26,
-   "forecast_real": 3008742.0,
-   "forecast_pct": 105.6
+   "forecast_real": 3127257.0,
+   "forecast_pct": 109.7
   },
   {
    "name": "ГП",
@@ -130,7 +130,7 @@ window.DASH_DATA = {
   {
    "name": "Массаж",
    "pt": 0,
-   "clients": 193,
+   "clients": 192,
    "pt_clients": 0,
    "studio": 0,
    "real": 415050.5,
@@ -138,9 +138,9 @@ window.DASH_DATA = {
    "real_pct": 73,
    "prev": 462388.75,
    "delta_pct": -10.2,
-   "st": 124,
+   "st": 123,
    "st_plan": 90,
-   "st_pct": 138,
+   "st_pct": 137,
    "st_sales": 11,
    "st_sales_pct": 9,
    "massage_hours": 187.0,
@@ -150,18 +150,18 @@ window.DASH_DATA = {
   {
    "name": "СМ",
    "pt": 63,
-   "clients": 260,
+   "clients": 258,
    "pt_clients": 59,
    "studio": 0,
-   "real": 82585.0,
+   "real": 83020.0,
    "real_plan": 100000,
    "real_pct": 83,
    "prev": 59840.0,
-   "delta_pct": 38.0,
-   "st": 243,
+   "delta_pct": 38.7,
+   "st": 241,
    "st_plan": 285,
    "st_pct": 85,
-   "st_sales": 34,
+   "st_sales": 33,
    "st_sales_pct": 14,
    "forecast_real": 87510.21,
    "forecast_pct": 87.5
@@ -173,7 +173,7 @@ window.DASH_DATA = {
     "name": "Ахиялтдинов И. Р.",
     "st": 23,
     "sales": 1,
-    "pt": 45,
+    "pt": 69,
     "studio": 0,
     "sales_pct": 4
    },
@@ -181,7 +181,7 @@ window.DASH_DATA = {
     "name": "Мифтахутдинова Ф. Э.",
     "st": 20,
     "sales": 3,
-    "pt": 43,
+    "pt": 42,
     "studio": 0,
     "sales_pct": 15
    },
@@ -189,7 +189,7 @@ window.DASH_DATA = {
     "name": "Айгильдина А. Е.",
     "st": 18,
     "sales": 7,
-    "pt": 14,
+    "pt": 20,
     "studio": 0,
     "sales_pct": 39
    },
@@ -197,7 +197,7 @@ window.DASH_DATA = {
     "name": "Камалетдинова Ю. В.",
     "st": 17,
     "sales": 5,
-    "pt": 40,
+    "pt": 46,
     "studio": 0,
     "sales_pct": 29
    },
@@ -205,7 +205,7 @@ window.DASH_DATA = {
     "name": "Гафуров А. А.",
     "st": 17,
     "sales": 0,
-    "pt": 0,
+    "pt": 4,
     "studio": 0,
     "sales_pct": 0
    },
@@ -213,7 +213,7 @@ window.DASH_DATA = {
     "name": "Чичканова И. С.",
     "st": 15,
     "sales": 3,
-    "pt": 23,
+    "pt": 25,
     "studio": 0,
     "sales_pct": 20
    },
@@ -221,7 +221,7 @@ window.DASH_DATA = {
     "name": "Герасимов В. В.",
     "st": 13,
     "sales": 3,
-    "pt": 94,
+    "pt": 98,
     "studio": 0,
     "sales_pct": 23
    },
@@ -253,7 +253,7 @@ window.DASH_DATA = {
     "name": "Лапшина Н. О.",
     "st": 6,
     "sales": 2,
-    "pt": 80,
+    "pt": 82,
     "studio": 0,
     "sales_pct": 33
    },
@@ -269,7 +269,7 @@ window.DASH_DATA = {
     "name": "Сафутдинова А. А.",
     "st": 6,
     "sales": 1,
-    "pt": 9,
+    "pt": 13,
     "studio": 0,
     "sales_pct": 17
    },
@@ -277,7 +277,7 @@ window.DASH_DATA = {
     "name": "Зеркин А. М.",
     "st": 5,
     "sales": 0,
-    "pt": 4,
+    "pt": 13,
     "studio": 0,
     "sales_pct": 0
    },
@@ -285,7 +285,7 @@ window.DASH_DATA = {
     "name": "Зайнуллина Д. И.",
     "st": 4,
     "sales": 2,
-    "pt": 50,
+    "pt": 51,
     "studio": 0,
     "sales_pct": 50
    },
@@ -294,14 +294,14 @@ window.DASH_DATA = {
     "st": 4,
     "sales": 0,
     "pt": 41,
-    "studio": 0,
+    "studio": 4.0,
     "sales_pct": 0
    },
    {
     "name": "Иванов В. Ю.",
     "st": 3,
     "sales": 3,
-    "pt": 44,
+    "pt": 45,
     "studio": 0,
     "sales_pct": 100
    },
@@ -309,7 +309,7 @@ window.DASH_DATA = {
     "name": "Нагорная А. Е.",
     "st": 3,
     "sales": 2,
-    "pt": 19,
+    "pt": 22,
     "studio": 0,
     "sales_pct": 67
    },
@@ -326,14 +326,14 @@ window.DASH_DATA = {
     "st": 3,
     "sales": 0,
     "pt": 3,
-    "studio": 301.0,
+    "studio": 306.0,
     "sales_pct": 0
    },
    {
     "name": "Людке Ю. Г.",
     "st": 2,
     "sales": 2,
-    "pt": 37,
+    "pt": 49,
     "studio": 0,
     "sales_pct": 100
    },
@@ -349,7 +349,7 @@ window.DASH_DATA = {
     "name": "Исхакова Ю. С.",
     "st": 2,
     "sales": 0,
-    "pt": 86,
+    "pt": 85,
     "studio": 0,
     "sales_pct": 0
    },
@@ -520,15 +520,15 @@ window.DASH_DATA = {
     "st": 2,
     "sales": 0,
     "pt": 43,
-    "studio": 60.0,
+    "studio": 63.0,
     "sales_pct": 0
    },
    {
     "name": "Скиба А. С.",
     "st": 1,
     "sales": 1,
-    "pt": 29,
-    "studio": 0,
+    "pt": 30,
+    "studio": 0.0,
     "sales_pct": 100
    },
    {
@@ -802,15 +802,6 @@ window.DASH_DATA = {
   ],
   "Массаж": [
    {
-    "name": "Гасимов Р. Р.",
-    "st": 39,
-    "sales": 8,
-    "pt": 0,
-    "studio": 0,
-    "massage_hours": 96.0,
-    "sales_pct": 21
-   },
-   {
     "name": "Рагульковский М. М.",
     "st": 39,
     "sales": 0,
@@ -818,6 +809,15 @@ window.DASH_DATA = {
     "studio": 0,
     "massage_hours": 18.5,
     "sales_pct": 0
+   },
+   {
+    "name": "Гасимов Р. Р.",
+    "st": 38,
+    "sales": 8,
+    "pt": 0,
+    "studio": 0,
+    "massage_hours": 96.0,
+    "sales_pct": 21
    },
    {
     "name": "Зарытова Г. Р.",
@@ -875,18 +875,18 @@ window.DASH_DATA = {
    {
     "name": "Ломакина А. В.",
     "st": 39,
-    "sales": 7,
+    "sales": 6,
     "pt": 12,
     "studio": 0,
-    "sales_pct": 18
+    "sales_pct": 15
    },
    {
     "name": "Каюмова А. А.",
-    "st": 35,
+    "st": 33,
     "sales": 4,
     "pt": 9,
     "studio": 0,
-    "sales_pct": 11
+    "sales_pct": 12
    },
    {
     "name": "Хамидуллина Н. Х.",
