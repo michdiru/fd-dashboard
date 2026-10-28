@@ -258,6 +258,7 @@
     body.dept-view .rank-row{font-size:12px;}
     body.dept-view .rank-hdr{font-size:8px;}
   }
+  .rank-sort{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:12px;margin:0 2px 12px;}
 </style>
 </head>
 <body>
@@ -286,9 +287,16 @@
 
       <div class="col-r">
         <div class="lb-head">
-          <div class="lb-title">Рейтинг тренеров по СТ</div>
+          <div class="lb-title">Рейтинг тренеров</div>
           <div class="lb-sub">по департаментам · проведённые СТ и конверсия в продажу</div>
         </div>
+        <label class="rank-sort">Сортировать:
+          <select class="month-select" id="trainerSort" aria-label="Сортировка тренеров">
+            <option value="st">По СТ ↓</option><option value="pt">По ПТ / часам массажа ↓</option>
+            <option value="studio">По студиям ↓</option><option value="sales">По проценту продаж ↓</option>
+            <option value="name">По ФИО А–Я</option>
+          </select>
+        </label>
         <div class="lb-grid" id="lbGrid"></div>
       </div>
     </div>
@@ -488,21 +496,45 @@
       'секции/студии — сумма Qty услуг со словами «Секция» или «Студия». Планы на месяц — data/plans.json.'+
       (D.forecast ? ' Прогноз: средние по дням недели текущего месяца, включая нулевые дни, по '+D.forecast.through+'. Даты вне месяца — только в факте. Праздники и разовые мероприятия не учитываются отдельно.'+(D.forecast.available ? '' : ' Пока недостаточно данных: нужны минимум два наблюдения соответствующих дней недели.') : '');
 
+    var sortSelect = document.getElementById('trainerSort');
+    var sortKey = new URLSearchParams(window.location.search).get('sort');
+    if(!['st','pt','studio','sales','name'].includes(sortKey)){
+      try{ sortKey = localStorage.getItem('fd-trainer-sort'); }catch(e){}
+    }
+    if(!['st','pt','studio','sales','name'].includes(sortKey)) sortKey = 'st';
+    sortSelect.value = sortKey;
+    function sortValue(tr, dep){
+      if(sortKey === 'sales') return tr.sales_pct != null ? tr.sales_pct : tr.st ? Math.round((tr.sales||0)/tr.st*100) : null;
+      return tr[sortKey === 'pt' && dep === 'Массаж' ? 'massage_hours' : sortKey];
+    }
+    sortSelect.addEventListener('change', function(){
+      sortKey = this.value;
+      try{ localStorage.setItem('fd-trainer-sort', sortKey); }catch(e){}
+      var url = new URL(window.location.href);
+      url.searchParams.set('sort', sortKey);
+      history.replaceState(null, '', url);
+      renderRankings();
+    });
     /* trainer panels: все тренеры каждого департамента */
     function panelHTML(dep){
-      var list = (D.trainers[dep]||[]);
-      var max = list.length ? list[0].st : 1;
+      var list = (D.trainers[dep]||[]).slice().sort(function(a,b){
+        var byName = a.name.localeCompare(b.name, 'ru');
+        if(sortKey === 'name') return byName;
+        var av = sortValue(a,dep), bv = sortValue(b,dep);
+        if(av == null && bv != null) return 1;
+        if(bv == null && av != null) return -1;
+        return (bv||0)-(av||0) || byName;
+      });
       var col = DEPT_COLOR[dep];
       var d = null;
       for(var i=0;i<D.departments.length;i++) if(D.departments[i].name===dep) d=D.departments[i];
       var rowsH = list.map(function(tr,i){
-        var w = Math.max(6, Math.round(tr.st/max*100));
         var sales = tr.sales||0;
         var salesPct = tr.sales_pct;
         if(salesPct==null && tr.st) salesPct = Math.round(sales/tr.st*100);
         var salesLabel = salesPct==null ? '—' : salesPct+'%';
         var salesTitle = tr.st ? 'Купили: '+sales+' из '+tr.st+' ('+salesLabel+')' : '';
-        return '<div class="rank-row'+(i<3?' medal':'')+'">'+
+        return '<div class="rank-row'+(sortKey!=='name' && i<3?' medal':'')+'">'+
           '<div class="rank-num num">'+(i+1)+'</div>'+
           '<div class="rank-name" title="'+esc(tr.name)+'">'+esc(tr.name)+'</div>'+
           '<div class="rank-val num">'+tr.st+'</div>'+
@@ -524,9 +556,13 @@
         '<div class="rank-list">'+rowsH+'</div>'+
       '</div>';
     }
+    function renderRankings(){
     document.getElementById('lbGrid').innerHTML = PANEL_COLS.map(function(colDeps){
       return '<div class="lb-col">'+colDeps.map(panelHTML).join('')+'</div>';
     }).join('');
+
+    }
+    renderRankings();
 
     /* масштабирование под окно */
     function fit(){
